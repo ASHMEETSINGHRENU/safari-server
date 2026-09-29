@@ -20,9 +20,22 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+const clientUrl = process.env.CLIENT_URL || 'https://safari-client-topaz.vercel.app';
+const allowedOrigins = [
+  'https://safari-client-topaz.vercel.app',
+  'http://localhost:5174',
+  'http://localhost:3000',
+  process.env.CLIENT_URL
+].filter(Boolean);
+
 // Middlewares
 app.use(cors({
-  origin: (origin, callback) => callback(null, true),
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -50,6 +63,8 @@ app.get('/', (req, res) => {
           .badge { display: inline-block; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
           h1 { margin: 0 0 10px; font-size: 28px; letter-spacing: 0.05em; color: #EADCC6; font-family: Georgia, serif; }
           p { margin: 0 0 24px; color: rgba(234, 220, 198, 0.8); font-size: 14px; line-height: 1.6; }
+          .btn { background: #D4A35B; color: #2E3A23; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-block; margin-bottom: 24px; letter-spacing: 0.05em; text-transform: uppercase; font-size: 12px; transition: background 0.2s; }
+          .btn:hover { background: #fae29c; }
           .endpoints { text-align: left; background: rgba(0,0,0,0.3); border: 1px solid rgba(234, 220, 198, 0.1); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; font-family: monospace; font-size: 13px; }
           .endpoints a { color: #D4A35B; text-decoration: none; display: block; margin: 8px 0; }
           .endpoints a:hover { text-decoration: underline; color: #fae29c; }
@@ -61,6 +76,7 @@ app.get('/', (req, res) => {
           <span class="badge">● API Online & Healthy</span>
           <h1>SHUTTER AND STRIPES</h1>
           <p>The premium wildlife safari discovery, storytelling, and booking API is live and connected to MongoDB Atlas.</p>
+          <a href="https://safari-client-topaz.vercel.app" target="_blank" class="btn">Open Live Website ➔</a>
           <div class="endpoints">
             <span style="color: rgba(234, 220, 198, 0.5); font-size: 11px; text-transform: uppercase;">Active Endpoints:</span>
             <a href="/api/health" target="_blank">➜ /api/health (System Diagnostics)</a>
