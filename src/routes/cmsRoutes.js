@@ -1,4 +1,4 @@
-﻿import express from 'express';
+import express from 'express';
 import {
   getCMSContent,
   updateCMSContent,
@@ -32,7 +32,9 @@ router.post('/gallery', authenticateToken, requireRole('super_admin', 'admin', '
 
 // Journal
 router.get('/journal', getJournals);
+router.get('/journals', getJournals);
 router.get('/journal/:slug', getJournalBySlug);
+router.get('/journals/:slug', getJournalBySlug);
 router.post('/journal', authenticateToken, requireRole('super_admin', 'admin', 'content_manager'), createJournal);
 
 // FAQ
