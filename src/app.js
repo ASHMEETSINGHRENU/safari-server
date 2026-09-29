@@ -34,6 +34,63 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', platform: 'SHUTTER AND STRIPES', timestamp: new Date() });
 });
 
+// Root welcome / status page for browser visitors & API consumers
+app.get('/', (req, res) => {
+  if (req.accepts('html')) {
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SHUTTER AND STRIPES — API Service</title>
+        <style>
+          body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #2E3A23; color: #EADCC6; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+          .card { background: #222b1a; border: 1px solid rgba(212, 163, 91, 0.3); border-radius: 16px; padding: 40px; max-width: 580px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.5); text-align: center; }
+          .badge { display: inline-block; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+          h1 { margin: 0 0 10px; font-size: 28px; letter-spacing: 0.05em; color: #EADCC6; font-family: Georgia, serif; }
+          p { margin: 0 0 24px; color: rgba(234, 220, 198, 0.8); font-size: 14px; line-height: 1.6; }
+          .endpoints { text-align: left; background: rgba(0,0,0,0.3); border: 1px solid rgba(234, 220, 198, 0.1); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; font-family: monospace; font-size: 13px; }
+          .endpoints a { color: #D4A35B; text-decoration: none; display: block; margin: 8px 0; }
+          .endpoints a:hover { text-decoration: underline; color: #fae29c; }
+          .footer { font-size: 11px; color: rgba(234, 220, 198, 0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <span class="badge">● API Online & Healthy</span>
+          <h1>SHUTTER AND STRIPES</h1>
+          <p>The premium wildlife safari discovery, storytelling, and booking API is live and connected to MongoDB Atlas.</p>
+          <div class="endpoints">
+            <span style="color: rgba(234, 220, 198, 0.5); font-size: 11px; text-transform: uppercase;">Active Endpoints:</span>
+            <a href="/api/health" target="_blank">➜ /api/health (System Diagnostics)</a>
+            <a href="/api/v1/destinations" target="_blank">➜ /api/v1/destinations (14 Reserves)</a>
+            <a href="/api/v1/safaris" target="_blank">➜ /api/v1/safaris (42 Safari Packages)</a>
+            <a href="/api/v1/cms/gallery" target="_blank">➜ /api/v1/cms/gallery (Wildlife Gallery)</a>
+            <a href="/api/v1/cms/journals" target="_blank">➜ /api/v1/cms/journals (Field Notes)</a>
+          </div>
+          <div class="footer">Central Indian Wild • MP & MH Reserves</div>
+        </div>
+      </body>
+      </html>
+    `);
+  } else {
+    res.json({
+      platform: 'SHUTTER AND STRIPES — Wildlife Safari & Booking API',
+      status: 'ONLINE',
+      database: 'MongoDB Atlas',
+      region: 'Madhya Pradesh & Maharashtra',
+      endpoints: {
+        health: '/api/health',
+        destinations: '/api/v1/destinations',
+        safaris: '/api/v1/safaris',
+        gallery: '/api/v1/cms/gallery',
+        journals: '/api/v1/cms/journals'
+      }
+    });
+  }
+});
+
 // API Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/destinations', destinationRoutes);
@@ -53,6 +110,15 @@ if (fs.existsSync(clientDistPath)) {
     res.sendFile(path.join(clientDistPath, 'index.html'));
   });
 }
+
+// 404 Handler for undefined routes
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found on this server.`,
+    availableEndpoints: ['/api/health', '/api/v1/destinations', '/api/v1/safaris', '/api/v1/cms', '/api/v1/auth']
+  });
+});
 
 // Global Error Handler
 app.use(errorHandler);
