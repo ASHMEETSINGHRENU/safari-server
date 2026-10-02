@@ -17,11 +17,21 @@ const BookingSchema = new mongoose.Schema({
   safariName: { type: String, required: true },
   safariDate: { type: String, required: true },
   slot: { type: String, required: true },
-  zone: { type: String, required: true },
+zone: { type: String, required: true },
   vehicleType: { type: String, default: 'Open 4x4 Safari Jeep' },
   guests: {
     adults: { type: Number, default: 1 },
     children: { type: Number, default: 0 }
+  },
+  guestDetails: {
+    type: [
+      {
+        fullName: { type: String, default: '' },
+        idType: { type: String, default: 'Aadhaar Card' },
+        idNumber: { type: String, default: '' }
+      }
+    ],
+    default: []
   },
   naturalistRequested: { type: Boolean, default: true },
   specialRequests: { type: String },
