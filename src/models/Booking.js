@@ -15,8 +15,8 @@ const BookingSchema = new mongoose.Schema({
   destinationName: { type: String, required: true },
   safari: { type: mongoose.Schema.Types.ObjectId, ref: 'Safari' },
   safariName: { type: String, required: true },
-  safariDate: { type: String, required: true },
-slot: { type: String, required: true },
+safariDate: { type: String, required: true },
+  slot: { type: String, required: true },
   zone: { type: String, required: true },
   vehicleType: { type: String, default: 'Open 4x4 Safari Jeep' },
   guests: {
