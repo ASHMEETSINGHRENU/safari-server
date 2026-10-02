@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
+import { MONGO_URI } from '../config/env.js';
 import { User } from '../models/User.js';
 import { Destination } from '../models/Destination.js';
 import { Safari } from '../models/Safari.js';
@@ -11,10 +11,8 @@ import { FAQ } from '../models/FAQ.js';
 import { Review } from '../models/Review.js';
 import { CMSContent } from '../models/CMSContent.js';
 import { SiteSettings } from '../models/SiteSettings.js';
-
-dotenv.config();
-
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shutter_stripes';
+import { editorialFor } from './editorial.js';
+import { PACKAGES_BY_SLUG } from './packagesData.js';
 
 async function seedDatabase() {
   try {
@@ -40,7 +38,7 @@ async function seedDatabase() {
     const custPass = await bcrypt.hash('Traveler@2026', adminSalt);
 
     const superAdmin = await User.create({
-      name: 'Ashmeet (Chief Naturalist & Admin)',
+      name: 'Sachin (Founder and Principal Naturalist)',
       email: 'admin@shutterandstripes.com',
       passwordHash: adminPass,
       role: 'super_admin',
@@ -57,9 +55,9 @@ async function seedDatabase() {
       country: 'India'
     });
 
-    console.log('[Seed] Users seeded (Admin & Customer).');
+    console.log('[Seed] Users seeded (Admin and Customer).');
 
-    // 2. Seed 14 Destinations (7 MP, 7 MH - strict separation of Pench MP & Pench MH)
+    // 2. Seed Destinations (7 MP, 7 MH - strict separation of Pench MP and Pench MH)
     const destinationsData = [
       // --- MAHARASHTRA ---
       {
@@ -110,7 +108,7 @@ async function seedDatabase() {
             highlight: 'Uncrowded tracks and serene forest solitude.'
           },
           {
-            name: 'Agauzari & Junona Buffer',
+            name: 'Agauzari and Junona Buffer',
             type: 'buffer',
             gates: ['Agauzari Gate', 'Junona Gate'],
             vehicleQuotaPerDay: 50,
@@ -146,7 +144,7 @@ async function seedDatabase() {
         name: 'Pench Tiger Reserve — Maharashtra',
         slug: 'pench-mh',
         state: 'Maharashtra',
-        tagline: 'The Original Mowgli Heartland (Sillari & Mansinghdeo)',
+        tagline: 'The Original Mowgli Heartland (Sillari and Mansinghdeo)',
         shortDesc: 'The southern expanse of the legendary Kipling wilderness, featuring dramatic teak forests, tranquil backwaters, and pristine riverine corridors.',
         editorialQuote: 'Here, the Pench river carves through weathered rocks and whispering teak, preserving the untamed spirit of the classic jungle books.',
         fullDesc: 'Pench Maharashtra encompasses 741 sq km across Nagpur district. Centered around the Sillari gate and the adjoining Mansinghdeo Sanctuary, it protects the vital southern wildlife corridor. Celebrated for its gentle terrain, high prey density, and picturesque waterholes, it offers exceptional photographic opportunities away from heavy tourist corridors.',
@@ -157,7 +155,7 @@ async function seedDatabase() {
           '/assets/img/leopard-stalking.jpg'
         ],
         areaSqKm: 741,
-        tigerCount: '45+ Resident & Corridor Tigers',
+        tigerCount: '45+ Resident and Corridor Tigers',
         bestTimeToVisit: 'October to mid-June',
         coordinates: { lat: 21.5768, lng: 79.2341 },
         mapPosition: { x: 38, y: 64 },
@@ -268,7 +266,7 @@ async function seedDatabase() {
           '/assets/img/forest-canopy-sunbeams.jpg'
         ],
         areaSqKm: 653,
-        tigerCount: '15+ Tigers & Active Translocation Area',
+        tigerCount: '15+ Tigers and Active Translocation Area',
         bestTimeToVisit: 'October to June',
         coordinates: { lat: 21.2872, lng: 80.0528 },
         mapPosition: { x: 52, y: 62 },
@@ -312,7 +310,7 @@ async function seedDatabase() {
         availability: 'AVAILABLE',
         zones: [
           {
-            name: 'Semanadoh & Harisal Core',
+            name: 'Semanadoh and Harisal Core',
             type: 'core',
             gates: ['Semanadoh Gate', 'Kolkas Gate'],
             vehicleQuotaPerDay: 30,
@@ -340,7 +338,7 @@ async function seedDatabase() {
         heroImage: '/assets/img/tiger-grassland-gaze.jpg',
         galleryImages: ['/assets/img/safari-photographers-trail.jpg', '/assets/img/tiger-leaves-peek.jpg'],
         areaSqKm: 138,
-        tigerCount: '10+ Resident Tigers & Corridor Cats',
+        tigerCount: '10+ Resident Tigers and Corridor Cats',
         bestTimeToVisit: 'October to June',
         coordinates: { lat: 20.9744, lng: 78.6922 },
         mapPosition: { x: 37, y: 68 },
@@ -377,7 +375,7 @@ async function seedDatabase() {
         galleryImages: ['/assets/img/jungle-dirt-road.jpg', '/assets/img/leopard-stalking.jpg'],
         areaSqKm: 1165,
         tigerCount: '7+ Recovering Population',
-        bestTimeToVisit: 'November to May (Trekking & Safaris)',
+        bestTimeToVisit: 'November to May (Trekking and Safaris)',
         coordinates: { lat: 17.4833, lng: 73.7833 },
         mapPosition: { x: 12, y: 82 },
         startingPrice: 6500,
@@ -472,7 +470,7 @@ async function seedDatabase() {
         name: 'Kanha Tiger Reserve',
         slug: 'kanha',
         state: 'Madhya Pradesh',
-        tagline: 'The Kipling Kingdom of Maidans & Sal',
+        tagline: 'The Kipling Kingdom of Maidans and Sal',
         shortDesc: 'India’s most celebrated national park, offering vast open savannahs (maidans), towering sal trees, and the miraculous conservation story of the Hardground Barasingha.',
         editorialQuote: 'Kanha’s rolling grasslands are the closest an Indian forest comes to the timeless majesty of the Serengeti.',
         fullDesc: 'Covering 2,051 sq km across Mandla and Balaghat districts, Kanha is celebrated as the flagship of Project Tiger. It inspired Rudyard Kipling’s Jungle Book and is the only global habitat where the swamp deer (Barasingha) was brought back from the edge of extinction. Features world-famous zones: Kanha, Kisli, Mukki, and Sarhi.',
@@ -536,7 +534,7 @@ async function seedDatabase() {
         name: 'Pench Tiger Reserve — Madhya Pradesh',
         slug: 'pench-mp',
         state: 'Madhya Pradesh',
-        tagline: 'The Classic Seoni Woodlands (Turia & Karmajhiri)',
+        tagline: 'The Classic Seoni Woodlands (Turia and Karmajhiri)',
         shortDesc: 'The northern heart of Kipling’s Mowgli territory in Seoni and Chhindwara, renowned for serene teak glades, open canopy visibility, and high predator density.',
         editorialQuote: 'Pench MP offers the quintessential dry deciduous safari experience with peerless light and gentle topography.',
         fullDesc: 'Covering 1,179 sq km along the MP-Maharashtra border, Pench MP is managed by the Madhya Pradesh Forest Department through its iconic Turia, Karmajhiri, and Jamtara gates. The crystal waters of the Pench river bisect the reserve, creating tranquil backwaters where tigers, wild dogs, and massive gaur herds gather.',
@@ -571,7 +569,7 @@ async function seedDatabase() {
             highlight: 'Pristine wilderness and great leopard tracking.'
           },
           {
-            name: 'Rukhad Buffer & Night Safari',
+            name: 'Rukhad Buffer and Night Safari',
             type: 'buffer',
             gates: ['Rukhad Gate'],
             vehicleQuotaPerDay: 20,
@@ -600,7 +598,7 @@ async function seedDatabase() {
         name: 'Satpura Tiger Reserve',
         slug: 'satpura',
         state: 'Madhya Pradesh',
-        tagline: 'The Walking Wilderness & Backwaters',
+        tagline: 'The Walking Wilderness and Backwaters',
         shortDesc: 'A unique wonderland of sandstone peaks, deep gorges, and the Denwa backwaters, offering rare walking safaris, canoeing, and intimate leopard tracking.',
         editorialQuote: 'Satpura is the quiet connoisseur’s forest—untamed, experiential, and profoundly atmospheric.',
         fullDesc: 'Encompassing 2,133 sq km in Hoshangabad district, Satpura is unlike any other Indian tiger reserve. It is one of the very few reserves in India that legally permits guided walking safaris inside core buffers. Accessed by boat across the Denwa river, it is famous for sloth bears, Indian leopards, and the Malabar giant squirrel.',
@@ -687,7 +685,7 @@ async function seedDatabase() {
         heroImage: '/assets/img/jungle-dirt-road.jpg',
         galleryImages: ['/assets/img/royal-bengal-prowl.jpg', '/assets/img/forest-canopy-sunbeams.jpg'],
         areaSqKm: 1674,
-        tigerCount: '35+ Tigers & Elephant Corridor',
+        tigerCount: '35+ Tigers and Elephant Corridor',
         bestTimeToVisit: 'November to May',
         coordinates: { lat: 24.0833, lng: 81.8667 },
         mapPosition: { x: 74, y: 28 },
@@ -731,7 +729,7 @@ async function seedDatabase() {
         availability: 'AVAILABLE',
         zones: [
           {
-            name: 'Ahera & Peepalbawdi Zones',
+            name: 'Ahera and Peepalbawdi Zones',
             type: 'core',
             gates: ['Tiktoli Gate', 'Ahera Gate'],
             vehicleQuotaPerDay: 20,
@@ -757,6 +755,31 @@ async function seedDatabase() {
       }
     ];
 
+    // Display rates / headline species / prime-zone curation, applied so this file
+    // stays the single place to edit the base records.
+    for (const d of destinationsData) Object.assign(d, editorialFor(d));
+
+    // Whole-package tiers come from the Content Master (sections 10 and 11), which is the
+    // pricing source of truth. These also drive startingPrice so safari base prices stay
+    // consistent with the advertised package floor.
+    const missingPackages = [];
+    for (const d of destinationsData) {
+      const p = PACKAGES_BY_SLUG[d.slug];
+      if (!p) { missingPackages.push(d.slug); continue; }
+      Object.assign(d, {
+        packages: p.packages,
+        positioning: p.positioning,
+        bestSuitedFor: p.bestSuitedFor,
+        gateway: p.gateway,
+        packageDuration: p.duration,
+        safariPlan: p.safari,
+        startingPrice: p.startingPrice,
+      });
+    }
+    if (missingPackages.length) {
+      console.warn(`[Seed] No package data in Content Master for: ${missingPackages.join(', ')}`);
+    }
+
     const createdDestinations = await Destination.insertMany(destinationsData);
     console.log(`[Seed] Successfully seeded ${createdDestinations.length} destinations (7 MP + 7 MH).`);
 
@@ -778,8 +801,6 @@ async function seedDatabase() {
         capacity: 6,
         zones: dest.zones.map(z => z.name),
         basePrice: dest.startingPrice,
-        permitFee: 1500,
-        guideFee: 1000,
         description: `Early dawn safari entering at gate opening. Optimal light for wildlife photography, fresh feline pugmarks, and active alarm calls.`,
         inclusions: ['4x4 Safari Jeep Permit', 'Certified Forest Department Naturalist', 'Taxes and Entry Fees', 'Morning Coffee and Tea Pack'],
         exclusions: ['Camera telephoto lens permits (if applicable)', 'Hotel pickup outside gate boundary'],
@@ -803,8 +824,6 @@ async function seedDatabase() {
         capacity: 6,
         zones: dest.zones.map(z => z.name),
         basePrice: dest.startingPrice + 500,
-        permitFee: 1500,
-        guideFee: 1000,
         description: `Afternoon expedition focusing on waterholes, shaded riverbanks, and predator movement before sunset.`,
         inclusions: ['4x4 Safari Jeep', 'Forest Guide', 'Park Permit', 'Chilled Water and Snacks'],
         exclusions: ['Tips to driver/guide'],
@@ -828,8 +847,6 @@ async function seedDatabase() {
         capacity: 3,
         zones: dest.zones.map(z => z.name),
         basePrice: dest.startingPrice * 1.6,
-        permitFee: 2000,
-        guideFee: 2500,
         description: `Tailored specifically for photographers. Max 3 photographers per vehicle for 360-degree lens positioning, quiet driving, and patient positioning.`,
         inclusions: ['Specialist Wildlife Photographer Guide', 'Beanbags for lenses up to 600mm', 'Inverter charging port in vehicle'],
         exclusions: ['Personal camera equipment'],
@@ -880,7 +897,7 @@ async function seedDatabase() {
         animal: 'Tiger',
         destinationName: 'Bandhavgarh Tiger Reserve',
         state: 'Madhya Pradesh',
-        photographer: 'Ashmeet / Shutter & Stripes',
+        photographer: 'Sachin / Shutter and Stripes',
         cameraGear: 'Sony A1 + 400mm f/2.8 GM',
         isFeatured: true
       },
@@ -900,12 +917,12 @@ async function seedDatabase() {
         animal: 'Leopard',
         destinationName: 'Pench Tiger Reserve',
         state: 'Maharashtra',
-        photographer: 'Shutter & Stripes Expeditions',
+        photographer: 'Shutter and Stripes Expeditions',
         cameraGear: 'Nikon Z9 + 600mm f/4',
         isFeatured: true
       },
       {
-        title: 'Field Guide & Forest Knowledge',
+        title: 'Field Guide and Forest Knowledge',
         imageUrl: '/assets/img/tadoba-guide-briefing.jpg',
         animal: 'Safari Life',
         destinationName: 'Tadoba-Andhari Tiger Reserve',
@@ -1008,7 +1025,7 @@ async function seedDatabase() {
         excerpt: 'Why patience, vehicle positioning, and absolute respect for animal distance trump aggressive lens pursuit every single time.',
         content: `### Beyond the Trophy Shot\n\nTrue wildlife photography begins long before you press the shutter. In the dry deciduous canopies of central India, animal ethics and respectful distance are paramount.\n\n#### The Golden Rules of Indian Jungle Photography:\n1. **Zero Animal Disturbance**: Never ask your driver to maneuver aggressively or cut off an animal's path.\n2. **Silence Over Speed**: Wildlife senses sound and vibrations. A vehicle that cuts its engine and waits quietly will always yield richer behavioral moments.\n3. **Natural Light Mastery**: Morning light in sal forests creates soft, diffused rims. Use high shutter speeds without relying on artificial lighting or flashes.\n\n*"A great photograph celebrates the animal’s kingdom, never its inconvenience."*`,
         coverImage: '/assets/img/photographer-fort-jeep.jpg',
-        author: 'Chief Naturalist Ashmeet',
+        author: 'Sachin — Founder and Principal Naturalist',
         readTime: '6 min read',
         destinationTag: 'Bandhavgarh'
       },
@@ -1028,11 +1045,23 @@ async function seedDatabase() {
         slug: 'comparing-pench-mp-vs-pench-maharashtra',
         category: 'Safari Guide',
         excerpt: 'Understanding the distinct gateways, administration, and landscape character of the two sides of Kipling’s river.',
-        content: `### One Forest, Two States, Two Unique Experiences\n\nMany travelers are confused when booking Pench. The reserve is split between Madhya Pradesh (Seoni & Chhindwara) and Maharashtra (Nagpur).\n\n- **Pench MP (Turia & Karmajhiri)**: Known for open teak woodlands, white ghost trees (Kullu), and expansive morning visibility.\n- **Pench Maharashtra (Sillari & Mansinghdeo)**: Denser riverine banks, quiet buffer corridors, and proximity to Nagpur airport.\n\nBoth are essential jewels of Central India's tiger landscape.`,
+        content: `### One Forest, Two States, Two Unique Experiences\n\nMany travelers are confused when booking Pench. The reserve is split between Madhya Pradesh (Seoni and Chhindwara) and Maharashtra (Nagpur).\n\n- **Pench MP (Turia and Karmajhiri)**: Known for open teak woodlands, white ghost trees (Kullu), and expansive morning visibility.\n- **Pench Maharashtra (Sillari and Mansinghdeo)**: Denser riverine banks, quiet buffer corridors, and proximity to Nagpur airport.\n\nBoth are essential jewels of Central India's tiger landscape.`,
         coverImage: '/assets/img/safari-trail-mist.jpg',
         author: 'Editorial Desk',
         readTime: '5 min read',
         destinationTag: 'Pench'
+      },
+      {
+        // ponytail: placeholder entry for Sachin's blog — replace content when written.
+        title: 'Notes from the Forest Floor',
+        slug: 'notes-from-the-forest-floor',
+        category: 'Wildlife',
+        excerpt: 'Field observations, tracking notes and seasonal natural-history updates from our core reserves.',
+        content: `### Coming Soon\n\nThis is where Sachin's field notes will live — tracking data, seasonal sightings, and natural-history observations gathered across our reserves.\n\nSubscribe to be notified when the first entry publishes.`,
+        coverImage: '/assets/img/photographer-fort-jeep.jpg',
+        author: 'Sachin — Founder and Principal Naturalist',
+        readTime: '4 min read',
+        destinationTag: 'Core Reserves'
       }
     ];
 
@@ -1090,7 +1119,7 @@ async function seedDatabase() {
       },
       {
         destinationName: 'Bandhavgarh Tiger Reserve',
-        author: 'Claire & Matthew Davies',
+        author: 'Claire and Matthew Davies',
         authorLocation: 'Bristol, UK',
         rating: 5,
         title: 'The Photography Equipment Setup was Flawless',
@@ -1100,7 +1129,7 @@ async function seedDatabase() {
       },
       {
         destinationName: 'Pench Tiger Reserve — Madhya Pradesh',
-        author: 'Vikram & Priya Nair',
+        author: 'Vikram and Priya Nair',
         authorLocation: 'Bengaluru, India',
         rating: 5,
         title: 'Seamless Booking and Transparent Communication',
@@ -1113,12 +1142,12 @@ async function seedDatabase() {
     await Review.insertMany(reviewsData);
     console.log('[Seed] Reviews seeded.');
 
-    // 9. Seed CMS Content (Homepage & Our Story & Settings)
+    // 9. Seed CMS Content (Homepage and Our Story and Settings)
     await CMSContent.create({
       key: 'homepage',
       data: {
         heroHeadline: 'CHASE THE WILD.',
-        heroSubtitle: 'Curated wildlife expeditions, local naturalist mastery, and ethical photography across Madhya Pradesh & Maharashtra.',
+        heroSubtitle: 'Curated wildlife expeditions, local naturalist mastery, and ethical photography across Madhya Pradesh and Maharashtra.',
         statesOverview: {
           mpDescription: 'The heart of India featuring world-renowned tiger bastions like Bandhavgarh, Kanha, Pench MP, and Satpura.',
           mhDescription: 'Rugged basalt terrains, dense bamboo valleys, and legendary feline dynasties in Tadoba, Pench MH, and Umred.'

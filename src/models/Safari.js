@@ -22,8 +22,7 @@ const SafariSchema = new mongoose.Schema({
   capacity: { type: Number, default: 6 },
   zones: [{ type: String }],
   basePrice: { type: Number, required: true },
-  permitFee: { type: Number, default: 1500 },
-  guideFee: { type: Number, default: 1000 },
+  // Ponytail: no permitFee/guideFee — both are bundled inside the destination package tiers.
   description: { type: String },
   inclusions: [{ type: String }],
   exclusions: [{ type: String }],

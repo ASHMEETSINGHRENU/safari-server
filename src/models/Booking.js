@@ -26,6 +26,7 @@ const BookingSchema = new mongoose.Schema({
   naturalistRequested: { type: Boolean, default: true },
   specialRequests: { type: String },
   totalAmount: { type: Number, required: true },
+  packageLabel: { type: String, enum: ['Budget', 'Mid-Range', 'Luxury'] },
   bookingStatus: { 
     type: String, 
     enum: ['pending', 'confirmed', 'payment_pending', 'paid', 'cancelled', 'completed', 'rejected'], 

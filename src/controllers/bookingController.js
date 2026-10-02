@@ -1,23 +1,40 @@
 ﻿import { Booking } from '../models/Booking.js';
+import { quoteFor, findDestinationForBooking } from '../utils/pricing.js';
 
 export const createBooking = async (req, res, next) => {
   try {
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
     const bookingRef = `SNS-${new Date().getFullYear()}-${randomSuffix}`;
 
+    const dest = await findDestinationForBooking({
+      destination: req.body.destination,
+      destinationSlug: req.body.destinationSlug,
+    });
+
+    const quote = await quoteFor({
+      destination: dest,
+      packageLabel: req.body.packageLabel,
+      adults: req.body.guests?.adults,
+      children: req.body.guests?.children,
+    });
+
     const bookingData = {
       ...req.body,
       bookingRef,
       user: req.user ? req.user._id : undefined,
+      destination: dest?._id,
+      destinationName: dest?.name ?? req.body.destinationName,
       bookingStatus: 'confirmed',
-      paymentStatus: 'paid'
+      paymentStatus: 'paid',
+      totalAmount: quote.total,
+      packageLabel: quote.tier,
     };
 
     const booking = await Booking.create(bookingData);
     res.status(201).json({
       success: true,
       message: 'Safari booking confirmed successfully.',
-      booking
+      booking,
     });
   } catch (error) {
     next(error);
@@ -45,6 +62,15 @@ export const getBookingByRef = async (req, res, next) => {
     const booking = await Booking.findOne({ bookingRef: ref.toUpperCase() });
     if (!booking) {
       return res.status(404).json({ success: false, message: 'Booking permit reference not found.' });
+    }
+    // A booking ref is guessable (year + 4 digits) and the document holds Aadhaar /
+    // passport numbers, so never hand it to an unauthenticated caller. Admins see the
+    // full record via getAllBookings; everyone else must own the booking.
+    const ownsBooking =
+      (booking.user && booking.user.toString() === req.user._id.toString()) ||
+      (booking.customerInfo.email || '').toLowerCase() === req.user.email.toLowerCase();
+    if (req.user.role === 'customer' && !ownsBooking) {
+      return res.status(403).json({ success: false, message: 'Not authorized to view this booking.' });
     }
     res.json({ success: true, booking });
   } catch (error) {

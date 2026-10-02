@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
@@ -20,34 +21,42 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-const clientUrl = process.env.CLIENT_URL || 'https://safari-client-topaz.vercel.app';
+const clientUrl = process.env.CLIENT_URL;
 const allowedOrigins = [
   'https://safari-client-topaz.vercel.app',
+  'https://shutter-and-stripes-frontend.onrender.com',
   'http://localhost:5174',
   'http://localhost:3000',
-  process.env.CLIENT_URL
+  clientUrl
 ].filter(Boolean);
 
 // Middlewares
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-    return callback(null, true);
+    // Same-origin/non-browser callers (curl, health checks, server-to-server) send no Origin.
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    // 403, not 500: a disallowed origin is a client error, and the stack must not
+    // echo the rejected origin back to the caller.
+    const err = new Error('Origin not allowed by CORS policy.');
+    err.status = 403;
+    return callback(err);
   },
   credentials: true
 }));
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.set('trust proxy', 1); // Render terminates TLS in front of us; needed for correct client IPs
+app.use(helmet());
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 app.use(morgan('dev'));
+
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', platform: 'SHUTTER AND STRIPES', timestamp: new Date() });
 });
 
-// Root welcome / status page for browser visitors & API consumers
+// Root welcome / status page for browser visitors and API consumers
 app.get('/', (req, res) => {
   if (req.accepts('html')) {
     res.send(`
@@ -73,29 +82,29 @@ app.get('/', (req, res) => {
       </head>
       <body>
         <div class="card">
-          <span class="badge">● API Online & Healthy</span>
+          <span class="badge">● API Online and Healthy</span>
           <h1>SHUTTER AND STRIPES</h1>
           <p>The premium wildlife safari discovery, storytelling, and booking API is live and connected to MongoDB Atlas.</p>
           <a href="https://safari-client-topaz.vercel.app" target="_blank" class="btn">Open Live Website ➔</a>
           <div class="endpoints">
             <span style="color: rgba(234, 220, 198, 0.5); font-size: 11px; text-transform: uppercase;">Active Endpoints:</span>
             <a href="/api/health" target="_blank">➜ /api/health (System Diagnostics)</a>
-            <a href="/api/v1/destinations" target="_blank">➜ /api/v1/destinations (14 Reserves)</a>
+            <a href="/api/v1/destinations" target="_blank">➜ /api/v1/destinations</a>
             <a href="/api/v1/safaris" target="_blank">➜ /api/v1/safaris (42 Safari Packages)</a>
             <a href="/api/v1/cms/gallery" target="_blank">➜ /api/v1/cms/gallery (Wildlife Gallery)</a>
             <a href="/api/v1/cms/journals" target="_blank">➜ /api/v1/cms/journals (Field Notes)</a>
           </div>
-          <div class="footer">Central Indian Wild • MP & MH Reserves</div>
+          <div class="footer">Central Indian Wild • MP and MH Reserves</div>
         </div>
       </body>
       </html>
     `);
   } else {
     res.json({
-      platform: 'SHUTTER AND STRIPES — Wildlife Safari & Booking API',
+      platform: 'SHUTTER AND STRIPES — Wildlife Safari and Booking API',
       status: 'ONLINE',
       database: 'MongoDB Atlas',
-      region: 'Madhya Pradesh & Maharashtra',
+      region: 'Madhya Pradesh and Maharashtra',
       endpoints: {
         health: '/api/health',
         destinations: '/api/v1/destinations',

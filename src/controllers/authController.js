@@ -1,6 +1,7 @@
 ﻿import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/User.js';
+import { JWT_SECRET } from '../config/env.js';
 
 export const register = async (req, res, next) => {
   try {
@@ -28,7 +29,7 @@ export const register = async (req, res, next) => {
 
     const token = jwt.sign(
       { id: newUser._id, role: newUser.role },
-      process.env.JWT_SECRET || 'shutter_and_stripes_wildlife_secret_2026_super_secure',
+      JWT_SECRET,
       { expiresIn: '7d' }
     );
 
@@ -73,7 +74,7 @@ export const login = async (req, res, next) => {
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      process.env.JWT_SECRET || 'shutter_and_stripes_wildlife_secret_2026_super_secure',
+      JWT_SECRET,
       { expiresIn: '7d' }
     );
 
@@ -108,7 +109,7 @@ export const getMe = async (req, res, next) => {
 export const updateProfile = async (req, res, next) => {
   try {
     const { name, phone, country } = req.body;
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).select('-passwordHash');
     if (!user) return res.status(404).json({ success: false, message: 'User not found.' });
 
     if (name) user.name = name;
@@ -128,7 +129,9 @@ export const toggleSaveDestination = async (req, res, next) => {
     const user = await User.findById(req.user._id);
     if (!user) return res.status(404).json({ success: false, message: 'User not found.' });
 
-    const index = user.savedDestinations.indexOf(destinationId);
+    // Mongoose does not cast inside indexOf(), so a raw string never matches an
+    // ObjectId in the array. Compare on the stringified value instead.
+    const index = user.savedDestinations.findIndex(d => d.toString() === destinationId);
     if (index > -1) {
       user.savedDestinations.splice(index, 1);
     } else {

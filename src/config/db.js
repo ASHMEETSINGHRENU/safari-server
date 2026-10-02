@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
+import { MONGO_URI } from './env.js';
 
 export const connectDB = async () => {
-  const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shutter_stripes';
   try {
-    const conn = await mongoose.connect(uri, {
+    const conn = await mongoose.connect(MONGO_URI, {
       serverSelectionTimeoutMS: 5000,
     });
     console.log(`[MongoDB] Connected to database: ${conn.connection.name} @ ${conn.connection.host}`);

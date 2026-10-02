@@ -19,6 +19,7 @@ import {
   updateSiteSettings
 } from '../controllers/cmsController.js';
 import { authenticateToken, requireRole } from '../middleware/auth.js';
+import { writeLimiter } from '../middleware/limiters.js';
 
 const router = express.Router();
 
@@ -42,19 +43,19 @@ router.get('/faqs', getFAQs);
 router.post('/faqs', authenticateToken, requireRole('super_admin', 'admin'), createFAQ);
 
 // Inquiries
-router.post('/inquiries', submitInquiry);
+router.post('/inquiries', writeLimiter, submitInquiry);
 router.get('/inquiries', authenticateToken, requireRole('super_admin', 'admin', 'booking_manager'), getInquiries);
 router.put('/inquiries/:id/status', authenticateToken, requireRole('super_admin', 'admin', 'booking_manager'), updateInquiryStatus);
 
 // Reviews
 router.get('/reviews', getReviews);
-router.post('/reviews', submitReview);
+router.post('/reviews', writeLimiter, submitReview);
 
 // Site Settings
 router.get('/settings', getSiteSettings);
 router.put('/settings', authenticateToken, requireRole('super_admin', 'admin'), updateSiteSettings);
 
 // Newsletter
-router.post('/newsletter', subscribeNewsletter);
+router.post('/newsletter', writeLimiter, subscribeNewsletter);
 
 export default router;
