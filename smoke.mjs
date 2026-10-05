@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import app from './src/app.js';
+import { ownsBooking, isStaff } from './src/utils/ownership.js';
+import { regexEscape } from './src/utils/search.js';
 
 // No DB in this smoke test; fail queries fast instead of buffering for 10s each.
 mongoose.set('bufferTimeoutMS', 100);
@@ -66,6 +68,32 @@ const server = app.listen(5099, async () => {
   expect('helmet x-content-type-options', h.headers.get('x-content-type-options'), 'nosniff');
   expect('helmet x-dns-prefetch-control', h.headers.get('x-dns-prefetch-control'), 'off');
   expect('helmet hides x-powered-by', h.headers.get('x-powered-by'), null);
+
+  // Booking ownership (src/utils/ownership.js). Pure, so no DB needed. The guest case
+  // is the regression guard: a guard written as `booking.user && booking.user != user`
+  // short-circuits to false for guest bookings and lets anyone cancel them.
+  const attacker = { _id: 'u_attacker', role: 'customer', email: 'attacker@evil.com' };
+  const guestBooking = { user: undefined, customerInfo: { email: 'victim@real.com' } };
+  const ownById = { user: 'u_attacker', customerInfo: { email: 'someone@else.com' } };
+  const ownByEmail = { user: undefined, customerInfo: { email: 'ATTACKER@evil.com' } };
+  const foreign = { user: 'u_victim', customerInfo: { email: 'victim@real.com' } };
+  const noEmail = { user: 'u_victim', customerInfo: {} };
+
+  expect('blocks a guest booking owned by someone else', ownsBooking(guestBooking, attacker), false);
+  expect('owns own booking by id', ownsBooking(ownById, attacker), true);
+  expect('owns own booking by email, case-insensitive', ownsBooking(ownByEmail, attacker), true);
+  expect('blocks a stranger booking', ownsBooking(foreign, attacker), false);
+  expect('blocks a booking with no email', ownsBooking(noEmail, attacker), false);
+  expect('staff recognised', isStaff({ role: 'super_admin' }), true);
+  expect('customer is not staff', isStaff(attacker), false);
+  expect('unknown role is not staff', isStaff({ role: 'wizard' }), false);
+
+  // Search terms reach Mongo as $regex. Unescaped, "(a+)+$" is a catastrophic
+  // backtracker and an unbalanced "[" throws, so the term must be literal.
+  expect('regex escapes metacharacters', regexEscape('a+b(c)'), 'a\\+b\\(c\\)');
+  expect('regex escapes a ReDoS payload', regexEscape('(a+)+$'), '\\(a\\+\\)\\+\\$');
+  expect('regex escapes an unbalanced bracket', regexEscape('tadoba['), 'tadoba\\[');
+  expect('regex leaves plain text alone', regexEscape('Tadoba'), 'Tadoba');
 
   server.close();
   console.log(failures === 0 ? '\nAll checks passed.' : `\n${failures} check(s) failed.`);

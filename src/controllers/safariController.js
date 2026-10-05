@@ -1,5 +1,6 @@
 ﻿import { Safari } from '../models/Safari.js';
 import { Destination } from '../models/Destination.js';
+import { regexEscape } from '../utils/search.js';
 
 export const getSafaris = async (req, res, next) => {
   try {
@@ -21,11 +22,12 @@ export const getSafaris = async (req, res, next) => {
     if (maxPrice) {
       query.basePrice = { $lte: Number(maxPrice) };
     }
-    if (search) {
+if (search) {
+      const term = regexEscape(search);
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { destinationName: { $regex: search, $options: 'i' } },
-        { description: { $regex: search, $options: 'i' } }
+        { name: { $regex: term, $options: 'i' } },
+        { destinationName: { $regex: term, $options: 'i' } },
+        { description: { $regex: term, $options: 'i' } }
       ];
     }
 

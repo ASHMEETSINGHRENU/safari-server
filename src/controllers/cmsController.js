@@ -117,7 +117,8 @@ export const createFAQ = async (req, res, next) => {
 // Inquiries
 export const submitInquiry = async (req, res, next) => {
   try {
-    const inquiry = await Inquiry.create(req.body);
+    // Public endpoint: status is the staff workflow's field, not the sender's.
+    const inquiry = await Inquiry.create({ ...req.body, status: 'new' });
     res.status(201).json({ success: true, message: 'Inquiry received. A specialist will reach out shortly.', inquiry });
   } catch (error) {
     next(error);
@@ -157,8 +158,10 @@ export const getReviews = async (req, res, next) => {
 
 export const submitReview = async (req, res, next) => {
   try {
-    const review = await Review.create(req.body);
-    res.status(201).json({ success: true, message: 'Thank you for your review!', review });
+    // Public endpoint, so isApproved is forced rather than trusted: the model defaults
+    // it to true, which would let anyone curl a 5-star review straight onto the page.
+    const review = await Review.create({ ...req.body, isApproved: false });
+    res.status(201).json({ success: true, message: 'Thank you for your review! It will appear once approved.', review });
   } catch (error) {
     next(error);
   }

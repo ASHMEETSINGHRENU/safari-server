@@ -4,9 +4,9 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
   email: { type: String, required: true, unique: true, lowercase: true, trim: true },
   passwordHash: { type: String, required: true },
-  role: { 
+role: { 
     type: String, 
-    enum: ['super_admin', 'admin', 'booking_manager', 'customer'], 
+    enum: ['super_admin', 'admin', 'booking_manager', 'content_manager', 'customer'], 
     default: 'customer' 
   },
   phone: { type: String, trim: true },

@@ -1,11 +1,16 @@
-﻿import { Booking } from '../models/Booking.js';
+﻿import { randomInt } from 'node:crypto';
+import { Booking } from '../models/Booking.js';
 import { quoteFor, findDestinationForBooking } from '../utils/pricing.js';
+import { ownsBooking, isStaff } from '../utils/ownership.js';
+import { regexEscape } from '../utils/search.js';
+
+// Read aloud over the phone, so the shape stays SNS-2026-1234. That is only 10k refs
+// per year, which the unique index enforces by throwing: retry rather than 500.
+const newBookingRef = () => `SNS-${new Date().getFullYear()}-${randomInt(1000, 10000)}`;
+const REF_ATTEMPTS = 5;
 
 export const createBooking = async (req, res, next) => {
   try {
-    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    const bookingRef = `SNS-${new Date().getFullYear()}-${randomSuffix}`;
-
     const dest = await findDestinationForBooking({
       destination: req.body.destination,
       destinationSlug: req.body.destinationSlug,
@@ -20,7 +25,6 @@ export const createBooking = async (req, res, next) => {
 
     const bookingData = {
       ...req.body,
-      bookingRef,
       user: req.user ? req.user._id : undefined,
       destination: dest?._id,
       destinationName: dest?.name ?? req.body.destinationName,
@@ -30,7 +34,16 @@ export const createBooking = async (req, res, next) => {
       packageLabel: quote.tier,
     };
 
-    const booking = await Booking.create(bookingData);
+    let booking;
+    for (let attempt = 1; ; attempt++) {
+      try {
+        booking = await Booking.create({ ...bookingData, bookingRef: newBookingRef() });
+        break;
+      } catch (error) {
+        if (error?.code !== 11000 || attempt >= REF_ATTEMPTS) throw error;
+      }
+    }
+
     res.status(201).json({
       success: true,
       message: 'Safari booking confirmed successfully.',
@@ -66,10 +79,7 @@ export const getBookingByRef = async (req, res, next) => {
     // A booking ref is guessable (year + 4 digits) and the document holds Aadhaar /
     // passport numbers, so never hand it to an unauthenticated caller. Admins see the
     // full record via getAllBookings; everyone else must own the booking.
-    const ownsBooking =
-      (booking.user && booking.user.toString() === req.user._id.toString()) ||
-      (booking.customerInfo.email || '').toLowerCase() === req.user.email.toLowerCase();
-    if (req.user.role === 'customer' && !ownsBooking) {
+    if (!isStaff(req.user) && !ownsBooking(booking, req.user)) {
       return res.status(403).json({ success: false, message: 'Not authorized to view this booking.' });
     }
     res.json({ success: true, booking });
@@ -84,10 +94,9 @@ export const cancelBooking = async (req, res, next) => {
     const booking = await Booking.findById(id);
     if (!booking) return res.status(404).json({ success: false, message: 'Booking not found.' });
 
-    // Ensure authorized user
-    if (req.user.role === 'customer' && 
-        booking.user && booking.user.toString() !== req.user._id.toString() &&
-        booking.customerInfo.email.toLowerCase() !== req.user.email.toLowerCase()) {
+// Same guard as getBookingByRef: staff may act on any booking, everyone else only
+    // on their own. A guest booking has no `user`, so ownership falls back to email.
+    if (!isStaff(req.user) && !ownsBooking(booking, req.user)) {
       return res.status(403).json({ success: false, message: 'Not authorized to cancel this booking.' });
     }
 
@@ -105,12 +114,13 @@ export const getAllBookings = async (req, res, next) => {
     let query = {};
     if (status) query.bookingStatus = status;
     if (paymentStatus) query.paymentStatus = paymentStatus;
-    if (search) {
+if (search) {
+      const term = regexEscape(search);
       query.$or = [
-        { bookingRef: { $regex: search, $options: 'i' } },
-        { 'customerInfo.fullName': { $regex: search, $options: 'i' } },
-        { 'customerInfo.email': { $regex: search, $options: 'i' } },
-        { destinationName: { $regex: search, $options: 'i' } }
+        { bookingRef: { $regex: term, $options: 'i' } },
+        { 'customerInfo.fullName': { $regex: term, $options: 'i' } },
+        { 'customerInfo.email': { $regex: term, $options: 'i' } },
+        { destinationName: { $regex: term, $options: 'i' } }
       ];
     }
 

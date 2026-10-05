@@ -19,6 +19,33 @@ async function seedDatabase() {
     await mongoose.connect(MONGO_URI);
     console.log('[Seed] Connected to MongoDB.');
 
+    // This wipes all ten collections, including Booking — which holds customer Aadhaar
+    // and passport numbers. The URI in .env points at the live Atlas cluster, so a fat
+    // finger here destroys real bookings. Opt in explicitly, every time.
+    if (!process.argv.includes('--force')) {
+      console.error('[Seed] REFUSING TO RUN: this deletes every collection, including live bookings and their ID documents.');
+      console.error(`[Seed] Target: ${mongoose.connection.host}/${mongoose.connection.name}`);
+      console.error('[Seed] To wipe it anyway, run:  npm run seed -- --force');
+      console.error('[Seed] To update live reserves without wiping, run:  npm run sync:editorial');
+      await mongoose.disconnect();
+      process.exit(1);
+    }
+
+    // Checked before anything is deleted, not after: failing post-wipe would leave the
+    // live database empty with no accounts to log in with.
+    const adminPassword = process.env.SEED_ADMIN_PASSWORD;
+    const customerPassword = process.env.SEED_CUSTOMER_PASSWORD;
+    const missing = [
+      !adminPassword && 'SEED_ADMIN_PASSWORD',
+      !customerPassword && 'SEED_CUSTOMER_PASSWORD'
+    ].filter(Boolean);
+    if (missing.length) {
+      console.error(`[Seed] REFUSING TO RUN: ${missing.join(' and ')} not set.`);
+      console.error('[Seed] Add them to server/.env (see .env.example) so no password is hardcoded here.');
+      await mongoose.disconnect();
+      process.exit(1);
+    }
+
     // Clear existing collections
     await User.deleteMany({});
     await Destination.deleteMany({});
@@ -34,8 +61,8 @@ async function seedDatabase() {
 
     // 1. Seed Users
     const adminSalt = await bcrypt.genSalt(10);
-    const adminPass = await bcrypt.hash('Safari@2026', adminSalt);
-    const custPass = await bcrypt.hash('Traveler@2026', adminSalt);
+    const adminPass = await bcrypt.hash(adminPassword, adminSalt);
+    const custPass = await bcrypt.hash(customerPassword, adminSalt);
 
     const superAdmin = await User.create({
       name: 'Sachin (Founder and Principal Naturalist)',
@@ -855,6 +882,22 @@ async function seedDatabase() {
         availabilityStatus: 'AVAILABLE'
       });
     }
+
+    // Legal category of each site. Only the ones the site copy is unambiguous about are
+// listed; everything else falls through to the schema default of 'Reserve', which is
+// correct for the tiger reserves (Tadoba, Pench MH, Melghat, Bor, Sahyadri, Bandhavgarh,
+// Navegaon-Nagzira, Panna). Needs a human decision, not a guess:
+//   satpura / pench-mp -> officially "X National Park and Tiger Reserve", so either
+//   value is defensible. Set them in the admin Safaris table.
+const PROTECTED_AREA_TYPE = {
+  'umred-karhandla': 'Sanctuary', // Umred-Karhandla Wildlife Sanctuary
+  kuno: 'Sanctuary',              // Kuno, a sanctuary in the cheetah translocation range
+  kanha: 'National Park',         // Kanha National Park
+  'sanjay-dubri': 'National Park' // Sanjay Dubri National Park
+};
+for (const s of safarisData) {
+  s.protectedAreaType = PROTECTED_AREA_TYPE[s.destinationSlug] ?? 'Reserve';
+}
 
     const createdSafaris = await Safari.insertMany(safarisData);
     console.log(`[Seed] Seeded ${createdSafaris.length} Safari packages.`);

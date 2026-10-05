@@ -85,7 +85,7 @@ app.get('/', (req, res) => {
           <span class="badge">● API Online and Healthy</span>
           <h1>SHUTTER AND STRIPES</h1>
           <p>The premium wildlife safari discovery, storytelling, and booking API is live and connected to MongoDB Atlas.</p>
-          <a href="https://safari-client-topaz.vercel.app" target="_blank" class="btn">Open Live Website ➔</a>
+          <a href="${clientUrl || '/'}" target="_blank" rel="noopener" class="btn">Open Live Website &rarr;</a>
           <div class="endpoints">
             <span style="color: rgba(234, 220, 198, 0.5); font-size: 11px; text-transform: uppercase;">Active Endpoints:</span>
             <a href="/api/health" target="_blank">➜ /api/health (System Diagnostics)</a>

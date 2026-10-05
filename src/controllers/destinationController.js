@@ -1,4 +1,5 @@
 ﻿import { Destination } from '../models/Destination.js';
+import { regexEscape } from '../utils/search.js';
 
 export const getDestinations = async (req, res, next) => {
   try {
@@ -14,12 +15,13 @@ export const getDestinations = async (req, res, next) => {
       query.availability = availability;
     }
 
-    if (search) {
+if (search) {
+      const term = regexEscape(search);
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { shortDesc: { $regex: search, $options: 'i' } },
-        { tagline: { $regex: search, $options: 'i' } },
-        { wildlifeHighlights: { $regex: search, $options: 'i' } }
+        { name: { $regex: term, $options: 'i' } },
+        { shortDesc: { $regex: term, $options: 'i' } },
+        { tagline: { $regex: term, $options: 'i' } },
+        { wildlifeHighlights: { $regex: term, $options: 'i' } }
       ];
     }
 

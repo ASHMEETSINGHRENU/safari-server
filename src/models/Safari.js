@@ -12,10 +12,19 @@ const SafariSchema = new mongoose.Schema({
     enum: ['Jeep Safari', 'Canter Safari', 'Private Photography Safari', 'Full-Day Safari', 'Night Buffer Safari', 'Walking Safari'], 
     default: 'Jeep Safari' 
   },
-  slot: { 
+slot: { 
     type: String, 
     enum: ['Morning', 'Afternoon', 'Full Day', 'Night'], 
     default: 'Morning' 
+  },
+  // Legal category of the protected area this allotment is inside. Many sites are a
+  // sanctuary, a reserve and/or a national park at once (Kanha and Pench are both NP and
+  // TR; Pench-MH adjoins Mansinghdeo Sanctuary), so this tags the individual safari
+  // rather than the destination. Guests book the area, not just the site.
+  protectedAreaType: {
+    type: String,
+    enum: ['Sanctuary', 'Reserve', 'National Park'],
+    default: 'Reserve'
   },
   duration: { type: String, default: '3.5 - 4 hours' },
   vehicle: { type: String, default: 'Open 4x4 Safari Jeep' },
