@@ -12,6 +12,7 @@ import { Review } from '../models/Review.js';
 import { CMSContent } from '../models/CMSContent.js';
 import { SiteSettings } from '../models/SiteSettings.js';
 import { editorialFor } from './editorial.js';
+import { blogArticles } from './blogs.js';
 import { PACKAGES_BY_SLUG } from './packagesData.js';
 
 async function seedDatabase() {
@@ -390,43 +391,6 @@ async function seedDatabase() {
         rulesAndGuidelines: ['Only 16 vehicles permitted per day to preserve tranquil habitat.'],
         faqs: [{ question: 'Why choose Bor Tiger Reserve?', answer: 'Ideal for travelers seeking quiet safaris with virtually no vehicle convoy traffic.' }]
       },
-      {
-        name: 'Sahyadri Tiger Reserve',
-        slug: 'sahyadri',
-        state: 'Maharashtra',
-        tagline: 'The Cloud Forests of the Western Ghats',
-        shortDesc: 'A UNESCO World Heritage ecological hotspot spanning the crest of the Sahyadri mountains with misty evergreen valleys and waterfalls.',
-        editorialQuote: 'Where the mist of the Arabian Sea meets the ancient basalt plateaus of the Western Ghats.',
-        fullDesc: 'Combining Koyna Wildlife Sanctuary and Chandoli National Park, Sahyadri Tiger Reserve safeguards 1,165 sq km of evergreen and semi-evergreen montane rainforests. Known for exceptional botanical endemism, elusive leopards, and recovering tiger populations.',
-        heroImage: '/assets/img/safari-trail-mist.jpg',
-        galleryImages: ['/assets/img/jungle-dirt-road.jpg', '/assets/img/leopard-stalking.jpg'],
-        areaSqKm: 1165,
-        tigerCount: '7+ Recovering Population',
-        bestTimeToVisit: 'November to May (Trekking and Safaris)',
-        coordinates: { lat: 17.4833, lng: 73.7833 },
-        mapPosition: { x: 12, y: 82 },
-        startingPrice: 6500,
-        availability: 'LIMITED',
-        zones: [
-          {
-            name: 'Chandoli Core',
-            type: 'core',
-            gates: ['Chandoli Gate'],
-            vehicleQuotaPerDay: 15,
-            description: 'Highland plateau and reservoir trails through dense rainforest.',
-            highlight: 'Rare Western Ghats endemic fauna and flora.'
-          }
-        ],
-        wildlifeHighlights: ['Indian Leopard', 'Bengal Tiger', 'Gaur (Bison)', 'Mouse Deer', 'Malabar Giant Squirrel', 'Great Pied Hornbill'],
-        howToReach: {
-          air: 'Pune Airport (180 km) or Kolhapur Airport (100 km)',
-          rail: 'Karad (55 km) or Sangli / Kolhapur',
-          road: 'Accessible via NH 48 from Mumbai, Pune, or Goa'
-        },
-        rulesAndGuidelines: ['Strict eco-sensitive protocols', 'Permits require prior forest verification.'],
-        faqs: [{ question: 'What makes Sahyadri unique compared to Vidarbha reserves?', answer: 'It is a Western Ghats rainforest rather than deciduous woodland, offering distinct biodiversity and dramatic mountain scenery.' }]
-      },
-
       // --- MADHYA PRADESH ---
       {
         name: 'Bandhavgarh Tiger Reserve',
@@ -885,7 +849,7 @@ async function seedDatabase() {
 
     // Legal category of each site. Only the ones the site copy is unambiguous about are
 // listed; everything else falls through to the schema default of 'Reserve', which is
-// correct for the tiger reserves (Tadoba, Pench MH, Melghat, Bor, Sahyadri, Bandhavgarh,
+// correct for the tiger reserves (Tadoba, Pench MH, Melghat, Bor, Bandhavgarh,
 // Navegaon-Nagzira, Panna). Needs a human decision, not a guess:
 //   satpura / pench-mp -> officially "X National Park and Tiger Reserve", so either
 //   value is defensible. Set them in the admin Safaris table.
@@ -1108,8 +1072,8 @@ for (const s of safarisData) {
       }
     ];
 
-    await Journal.insertMany(journalData);
-    console.log('[Seed] Journal articles seeded.');
+    await Journal.insertMany([...journalData, ...blogArticles]);
+    console.log(`[Seed] Journal articles seeded (${journalData.length + blogArticles.length}).`);
 
     // 7. Seed FAQs
     const faqData = [

@@ -81,6 +81,20 @@ console.log('[pricing] quoteFor');
 }
 
 {
+  const r = await quote({ packageLabel: 'Mid-Range', adults: 2, children: 0, naturalistRequested: true });
+  assert.equal(r.naturalistFee, 1000);
+  assert.equal(r.total, midRange.min * 2 + 1000);
+  ok('senior naturalist adds a flat fee once per booking');
+}
+
+{
+  const r = await quote({ packageLabel: 'Mid-Range', adults: 2, children: 0, naturalistRequested: false });
+  assert.equal(r.naturalistFee, 0);
+  assert.equal(r.total, midRange.min * 2);
+  ok('declining the naturalist leaves the package total untouched');
+}
+
+{
   const r = await quote({ packageLabel: 'Budget', adults: '3', children: '1' });
   assert.equal(r.adults, 3);
   assert.equal(r.total, budget.min * 3 + Math.round(budget.min * 0.5));

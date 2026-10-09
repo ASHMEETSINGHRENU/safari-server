@@ -13,7 +13,6 @@ export const EDITORIAL = {
   'navegaon-nagzira': {},
   'melghat':          { headlineSpecies: 'Forest Owlet (Endangered)' },
   'bor':              {},
-  'sahyadri':         { headlineSpecies: 'Indian Leopard' },
   'bandhavgarh':      { primeZones: ['Tala Core Zone'] },
   'kanha':            { primeZones: ['Kanha Core Zone'] },
   'pench-mp':         { primeZones: ['Turia Core Zone'] },

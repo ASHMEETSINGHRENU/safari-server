@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   passwordHash: { type: String, required: true },
 role: { 
     type: String, 
-    enum: ['super_admin', 'admin', 'booking_manager', 'content_manager', 'customer'], 
+    enum: ['super_admin', 'booking_manager', 'content_manager', 'customer'], 
     default: 'customer' 
   },
   phone: { type: String, trim: true },

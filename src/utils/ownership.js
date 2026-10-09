@@ -9,7 +9,8 @@
  */
 
 // Allowlist, not `role !== 'customer'`: an unrecognised role must fail closed.
-const STAFF_ROLES = ['super_admin', 'admin', 'booking_manager', 'content_manager'];
+// Booking authority only: a content_manager must never read or cancel arbitrary bookings.
+const STAFF_ROLES = ['super_admin', 'booking_manager'];
 
 export const isStaff = (user) => !!user && STAFF_ROLES.includes(user.role);
 

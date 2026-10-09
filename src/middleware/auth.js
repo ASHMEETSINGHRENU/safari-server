@@ -25,6 +25,23 @@ export const authenticateToken = async (req, res, next) => {
   }
 };
 
+// Booking accepts guests: attach the user when a valid token is supplied, but
+// never reject the request for a missing/expired one.
+export const optionalAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token) {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      const user = await User.findById(decoded.id).select('-passwordHash');
+      if (user && user.isActive) req.user = user;
+    }
+  } catch {
+    // fall through as a guest booking
+  }
+  next();
+};
+
 export const requireRole = (...roles) => {
   return (req, res, next) => {
     if (!req.user) {
@@ -37,16 +54,3 @@ export const requireRole = (...roles) => {
   };
 };
 
-export const optionalAuth = async (req, res, next) => {
-  try {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token) {
-      const decoded = jwt.verify(token, JWT_SECRET);
-      req.user = await User.findById(decoded.id).select('-passwordHash');
-    }
-  } catch (e) {
-    // Continue without user
-  }
-  next();
-};

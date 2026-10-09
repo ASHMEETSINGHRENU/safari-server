@@ -3,6 +3,22 @@ import { Booking } from '../models/Booking.js';
 import { quoteFor, findDestinationForBooking } from '../utils/pricing.js';
 import { ownsBooking, isStaff } from '../utils/ownership.js';
 import { regexEscape } from '../utils/search.js';
+import { notifyBookingReceived, notifyBookingStatus } from '../utils/notify.js';
+import { phoneDigits, matchesBookingContact } from '../utils/contact.js';
+
+// Trust-boundary validation. The client validates for UX; the server must not
+// trust it for anything that reaches the database or gets mailed back.
+const LEAD_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const validateBookingInput = (body = {}) => {
+  const c = body.customerInfo || {};
+  if (!body.destination) return 'A reserve must be selected.';
+  if (!String(body.safariDate || '').trim()) return 'A safari date is required.';
+  if (String(c.fullName || '').trim().length < 3) return 'Lead traveler full name is required.';
+  if (!LEAD_EMAIL.test(String(c.email || '').trim())) return 'A valid email address is required.';
+  if (phoneDigits(c.phone).length < 8) return 'A valid phone number is required.';
+  if (String(c.idNumber || '').trim().length < 4) return 'Lead traveler ID number is required for forest permits.';
+  return null;
+};
 
 // Read aloud over the phone, so the shape stays SNS-2026-1234. That is only 10k refs
 // per year, which the unique index enforces by throwing: retry rather than 500.
@@ -11,6 +27,9 @@ const REF_ATTEMPTS = 5;
 
 export const createBooking = async (req, res, next) => {
   try {
+    const invalid = validateBookingInput(req.body);
+    if (invalid) return res.status(400).json({ success: false, message: invalid });
+
     const dest = await findDestinationForBooking({
       destination: req.body.destination,
       destinationSlug: req.body.destinationSlug,
@@ -21,15 +40,17 @@ export const createBooking = async (req, res, next) => {
       packageLabel: req.body.packageLabel,
       adults: req.body.guests?.adults,
       children: req.body.guests?.children,
+      // Model default is "naturalist requested"; an explicit false is the only opt-out.
+      naturalistRequested: req.body.naturalistRequested !== false,
     });
 
     const bookingData = {
       ...req.body,
-      user: req.user ? req.user._id : undefined,
+      user: req.user?._id,
       destination: dest?._id,
       destinationName: dest?.name ?? req.body.destinationName,
-      bookingStatus: 'confirmed',
-      paymentStatus: 'paid',
+      bookingStatus: 'under_review',
+      paymentStatus: 'pending',
       totalAmount: quote.total,
       packageLabel: quote.tier,
     };
@@ -44,9 +65,12 @@ export const createBooking = async (req, res, next) => {
       }
     }
 
+    // Fire-and-forget: mail must never delay or fail the booking response.
+    notifyBookingReceived(booking).catch(() => {});
+
     res.status(201).json({
       success: true,
-      message: 'Safari booking confirmed successfully.',
+      message: 'Booking request received. Our team will review availability and call you back.',
       booking,
     });
   } catch (error) {
@@ -134,15 +158,41 @@ if (search) {
 export const updateBookingStatus = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { bookingStatus, paymentStatus } = req.body;
+    const { bookingStatus, paymentStatus, suggestion } = req.body;
     const booking = await Booking.findById(id);
     if (!booking) return res.status(404).json({ success: false, message: 'Booking not found.' });
 
     if (bookingStatus) booking.bookingStatus = bookingStatus;
     if (paymentStatus) booking.paymentStatus = paymentStatus;
+    // Lead rep sends a counter-offer (or clears it) alongside the status change.
+    if (suggestion !== undefined) booking.suggestion = suggestion || undefined;
 
     await booking.save();
+    if (bookingStatus) notifyBookingStatus(booking, bookingStatus).catch(() => {});
     res.json({ success: true, message: 'Booking status updated.', booking });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Guest lookup. A booking ref is guessable (year + 4 digits), so the caller must
+// also prove the email or phone on the booking. Both "not found" and "wrong
+// contact" return the same 404 so the endpoint cannot confirm a ref exists.
+export const trackBooking = async (req, res, next) => {
+  try {
+    const ref = String(req.body?.ref || '').trim().toUpperCase();
+    const email = String(req.body?.email || '').trim().toLowerCase();
+    const phone = phoneDigits(req.body?.phone);
+    const miss = () => res.status(404).json({ success: false, message: 'No booking matches that reference and contact.' });
+
+    if (!ref || (!email && phone.length < 8)) {
+      return res.status(400).json({ success: false, message: 'Provide the booking reference and the email or phone used to book.' });
+    }
+
+    const booking = await Booking.findOne({ bookingRef: ref });
+    if (!booking || !matchesBookingContact(booking, { email, phone })) return miss();
+
+    res.json({ success: true, booking });
   } catch (error) {
     next(error);
   }

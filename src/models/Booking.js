@@ -16,7 +16,8 @@ const BookingSchema = new mongoose.Schema({
   safari: { type: mongoose.Schema.Types.ObjectId, ref: 'Safari' },
 safariName: { type: String, required: true },
   safariDate: { type: String, required: true },
-  slot: { type: String, required: true },
+  // Slot selection was removed from the wizard; the rep assigns it during review.
+  slot: { type: String, default: 'To be confirmed' },
   zone: { type: String, required: true },
   vehicleType: { type: String, default: 'Open 4x4 Safari Jeep' },
   guests: {
@@ -39,13 +40,20 @@ safariName: { type: String, required: true },
   packageLabel: { type: String, enum: ['Budget', 'Mid-Range', 'Luxury'] },
   bookingStatus: { 
     type: String, 
-    enum: ['pending', 'confirmed', 'payment_pending', 'paid', 'cancelled', 'completed', 'rejected'], 
-    default: 'confirmed' 
+    enum: ['pending', 'under_review', 'confirmed', 'alternative_suggested', 'payment_pending', 'paid', 'cancelled', 'completed', 'rejected'], 
+    default: 'under_review' 
   },
   paymentStatus: { 
     type: String, 
     enum: ['pending', 'paid', 'refunded'], 
-    default: 'paid' 
+    default: 'pending' 
+  },
+  // Lead rep's counter-offer when the requested date/reserve is unavailable.
+  suggestion: {
+    destinationName: { type: String },
+    destinationSlug: { type: String },
+    packageLabel: { type: String },
+    message: { type: String }
   }
 }, { timestamps: true });
 

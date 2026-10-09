@@ -12,8 +12,8 @@ const router = express.Router();
 
 router.get('/', getDestinations);
 router.get('/:slug', getDestinationBySlug);
-router.post('/', authenticateToken, requireRole('super_admin', 'admin', 'content_manager'), createDestination);
-router.put('/:id', authenticateToken, requireRole('super_admin', 'admin', 'content_manager'), updateDestination);
-router.delete('/:id', authenticateToken, requireRole('super_admin', 'admin'), deleteDestination);
+router.post('/', authenticateToken, requireRole('super_admin', 'content_manager'), createDestination);
+router.put('/:id', authenticateToken, requireRole('super_admin', 'content_manager'), updateDestination);
+router.delete('/:id', authenticateToken, requireRole('super_admin'), deleteDestination);
 
 export default router;

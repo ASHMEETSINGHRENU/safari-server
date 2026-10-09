@@ -1,5 +1,8 @@
 import { Destination } from '../models/Destination.js';
 
+// Flat upgrade over the guide bundled in every package: one naturalist per booking.
+export const NATURALIST_FEE = 1000;
+
 /**
  * Server-side price authority.
  *
@@ -7,7 +10,7 @@ import { Destination } from '../models/Destination.js';
  * from the destination's seeded package tiers (whole packages only — park permit,
  * vehicle, guide and forest dues are bundled in). Guests multiply the per-person tier.
  */
-export async function quoteFor({ destination, packageLabel, adults, children }) {
+export async function quoteFor({ destination, packageLabel, adults, children, naturalistRequested }) {
   if (!destination) {
     throw Object.assign(new Error('Destination is required to price a booking.'), { status: 400 });
   }
@@ -27,13 +30,15 @@ export async function quoteFor({ destination, packageLabel, adults, children }) 
   const childCount = Number(children) > 0 ? Number(children) : 0;
   // Children travel on the same all-inclusive package at half the per-person rate.
   const perPerson = tier.min;
-  const total = perPerson * adultCount + Math.round(perPerson * 0.5) * childCount;
+  const naturalistFee = naturalistRequested ? NATURALIST_FEE : 0;
+  const total = perPerson * adultCount + Math.round(perPerson * 0.5) * childCount + naturalistFee;
 
   return {
     tier: tier.label,
     perPerson,
     adults: adultCount,
     children: childCount,
+    naturalistFee,
     total,
   };
 }

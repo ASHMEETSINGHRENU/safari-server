@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import app from './src/app.js';
 import { ownsBooking, isStaff } from './src/utils/ownership.js';
 import { regexEscape } from './src/utils/search.js';
+import { matchesBookingContact } from './src/utils/contact.js';
+import { roleChangeError } from './src/utils/teamAccess.js';
 
 // No DB in this smoke test; fail queries fast instead of buffering for 10s each.
 mongoose.set('bufferTimeoutMS', 100);
@@ -84,9 +86,18 @@ const server = app.listen(5099, async () => {
   expect('owns own booking by email, case-insensitive', ownsBooking(ownByEmail, attacker), true);
   expect('blocks a stranger booking', ownsBooking(foreign, attacker), false);
   expect('blocks a booking with no email', ownsBooking(noEmail, attacker), false);
-  expect('staff recognised', isStaff({ role: 'super_admin' }), true);
+  expect('booking staff recognised', isStaff({ role: 'super_admin' }), true);
+  expect('booking_manager is booking staff', isStaff({ role: 'booking_manager' }), true);
+  expect('content_manager has no booking authority', isStaff({ role: 'content_manager' }), false);
   expect('customer is not staff', isStaff(attacker), false);
   expect('unknown role is not staff', isStaff({ role: 'wizard' }), false);
+
+  // Access management is team-only: travelers have no console access to change.
+  expect('blocks a role change on a traveler', roleChangeError('customer', 'booking_manager')?.status, 403);
+  expect('rejects a customer target role', roleChangeError('booking_manager', 'customer')?.status, 400);
+  expect('rejects a bogus role', roleChangeError('booking_manager', 'wizard')?.status, 400);
+  expect('rejects the retired admin role', roleChangeError('booking_manager', 'admin')?.status, 400);
+  expect('allows a staff role change', roleChangeError('booking_manager', 'content_manager'), null);
 
   // Search terms reach Mongo as $regex. Unescaped, "(a+)+$" is a catastrophic
   // backtracker and an unbalanced "[" throws, so the term must be literal.
@@ -94,6 +105,23 @@ const server = app.listen(5099, async () => {
   expect('regex escapes a ReDoS payload', regexEscape('(a+)+$'), '\\(a\\+\\)\\+\\$');
   expect('regex escapes an unbalanced bracket', regexEscape('tadoba['), 'tadoba\\[');
   expect('regex leaves plain text alone', regexEscape('Tadoba'), 'Tadoba');
+
+  // Guest lookup: the ref alone must not unlock a booking, the email/phone must match.
+  const bookingRow = { customerInfo: { email: 'Victim@Real.com', phone: '+91 98765 43210' } };
+  expect('tracks with matching email, case-insensitive', matchesBookingContact(bookingRow, { email: 'victim@real.com' }), true);
+  expect('tracks with matching phone, format-insensitive', matchesBookingContact(bookingRow, { phone: '919876543210' }), true);
+  expect('rejects a wrong email', matchesBookingContact(bookingRow, { email: 'attacker@evil.com' }), false);
+  expect('rejects a too-short phone', matchesBookingContact(bookingRow, { phone: '1234' }), false);
+  expect('rejects empty contact', matchesBookingContact(bookingRow, {}), false);
+  expect('rejects a booking with no email', matchesBookingContact({ customerInfo: {} }, { email: 'a@b.co' }), false);
+
+  // Reaching track without a contact is rejected before any DB access.
+  const trackNoContact = await check('track_noContact', '/api/v1/bookings/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Origin: 'http://localhost:5174' },
+    body: JSON.stringify({ ref: 'SNS-2026-0001' })
+  });
+  expect('track requires a contact', trackNoContact.status, 400);
 
   server.close();
   console.log(failures === 0 ? '\nAll checks passed.' : `\n${failures} check(s) failed.`);

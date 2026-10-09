@@ -17,3 +17,12 @@ export const writeLimiter = rateLimit({
   legacyHeaders: false,
   message: { success: false, message: 'Too many requests. Please try again later.' }
 });
+
+// Guest booking lookup: slower and tighter, since the ref is short and guessable.
+export const lookupLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many lookups. Please try again shortly.' }
+});

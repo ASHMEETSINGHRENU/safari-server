@@ -22,12 +22,15 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const clientUrl = process.env.CLIENT_URL;
+// Extra origins can be added without a deploy via CLIENT_URLS (comma-separated).
+const extraOrigins = (process.env.CLIENT_URLS || '').split(',').map(s => s.trim()).filter(Boolean);
 const allowedOrigins = [
   'https://safari-client-topaz.vercel.app',
-  'https://shutter-and-stripes-frontend.onrender.com',
+  'https://shutter-and-stripes-frontend.onrender.com', // legacy Render static site, if still served
   'http://localhost:5174',
   'http://localhost:3000',
-  clientUrl
+  clientUrl,
+  ...extraOrigins
 ].filter(Boolean);
 
 // Middlewares
@@ -48,7 +51,8 @@ app.set('trust proxy', 1); // Render terminates TLS in front of us; needed for c
 app.use(helmet());
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
-app.use(morgan('dev'));
+// 'combined' gives real client IPs + status in prod logs; 'dev' is easier to read locally.
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
 
 // Health check
