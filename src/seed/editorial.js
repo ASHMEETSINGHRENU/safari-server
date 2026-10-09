@@ -19,7 +19,12 @@ export const EDITORIAL = {
   'satpura':          { headlineSpecies: 'Indian Leopard', primeZones: ['Madhai Core Zone'] },
   'panna':            { primeZones: ['Madla Core Zone'] },
   'sanjay-dubri':     {},
-  'kuno':             { headlineSpecies: 'African Cheetah (Project Cheetah)' }
+  'kuno':             { headlineSpecies: 'African Cheetah (Project Cheetah)' },
+  'tipeshwar':        { primeZones: ['Tipeshwar Core Zone'] },
+  'mogarkasa':        { headlineSpecies: 'Melanistic Leopard (Blackey)', primeZones: ['Mogarkasa Core Zone'] },
+  'radhanagari':      { headlineSpecies: 'Gaur (Indian Bison)' },
+  'ratapani':         { headlineSpecies: 'Indian Leopard', primeZones: ['Ratapani Core Zone'] },
+  'kheoni':           { primeZones: ['Kheoni Core Zone'] }
 };
 
 /** Returns the fields to write for one destination record. */

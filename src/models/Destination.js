@@ -22,7 +22,8 @@ const DestinationSchema = new mongoose.Schema({
     y: { type: Number, required: true }
   },
   // Floor of the Budget package. Kept for sorting/filtering; packages[] is the source of truth.
-  startingPrice: { type: Number, required: true },
+  // May be null when a reserve has no priced tiers yet — the UI renders that as "On request".
+  startingPrice: { type: Number, default: null },
   // Whole packages only — permit/vehicle/guide/forest dues are bundled in, never itemised.
   packages: [{
     label: { type: String, enum: ['Budget', 'Mid-Range', 'Luxury'], required: true },

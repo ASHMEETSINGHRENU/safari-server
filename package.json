@@ -9,6 +9,7 @@
     "dev": "node --watch server.js",
     "seed": "node src/seed/seed.js",
     "sync:editorial": "node src/seed/syncEditorial.js",
+    "add:destinations": "node src/seed/addDestinations.js",
     "check:pricing": "node pricing.check.mjs",
     "smoke": "node smoke.mjs"
   },
