@@ -8,14 +8,14 @@ import {
   updateBookingStatus,
   trackBooking
 } from '../controllers/bookingController.js';
-import { authenticateToken, optionalAuth, requireRole } from '../middleware/auth.js';
+import { authenticateToken, requireRole } from '../middleware/auth.js';
 import { writeLimiter, lookupLimiter } from '../middleware/limiters.js';
 
 const router = express.Router();
 
 const LEAD_ROLES = ['super_admin', 'booking_manager'];
 
-router.post('/', optionalAuth, writeLimiter, createBooking);
+router.post('/', authenticateToken, writeLimiter, createBooking);
 router.post('/track', lookupLimiter, trackBooking);
 router.get('/my-bookings', authenticateToken, getMyBookings);
 router.get('/ref/:ref', authenticateToken, getBookingByRef);

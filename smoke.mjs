@@ -47,6 +47,14 @@ const server = app.listen(5099, async () => {
   });
   expect('bookingRef requires auth', unauth.status, 401);
 
+  // Booking requires an account now: an anonymous create is rejected before any DB access.
+  const guestCreate = await check('booking_create_guest', '/api/v1/bookings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Origin: 'http://localhost:5174' },
+    body: JSON.stringify({})
+  });
+  expect('booking create requires auth', guestCreate.status, 401);
+
   const evilLogin = await check('login_evilOrigin', '/api/v1/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Origin: 'https://evil.example' },
