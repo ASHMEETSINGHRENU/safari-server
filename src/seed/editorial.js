@@ -22,7 +22,6 @@ export const EDITORIAL = {
   'kuno':             { headlineSpecies: 'African Cheetah (Project Cheetah)' },
   'tipeshwar':        { primeZones: ['Tipeshwar Core Zone'] },
   'mogarkasa':        { headlineSpecies: 'Melanistic Leopard (Blackey)', primeZones: ['Mogarkasa Core Zone'] },
-  'radhanagari':      { headlineSpecies: 'Gaur (Indian Bison)' },
   'ratapani':         { headlineSpecies: 'Indian Leopard', primeZones: ['Ratapani Core Zone'] },
   'kheoni':           { primeZones: ['Kheoni Core Zone'] }
 };

@@ -46,7 +46,6 @@ const DestinationSchema = new mongoose.Schema({
   zones: [{
     name: { type: String, required: true },
     type: { type: String, enum: ['core', 'buffer'], required: true },
-    gates: [{ type: String }],
     vehicleQuotaPerDay: { type: Number },
 description: { type: String },
     highlight: { type: String },

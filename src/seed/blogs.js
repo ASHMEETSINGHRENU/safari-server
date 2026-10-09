@@ -43,7 +43,7 @@ Whether you are visiting Tadoba for the first time or planning a wildlife photog
 ## Explore with purpose
 
 The vision is simple: help more people connect with the wild while supporting the communities that live alongside it. Shutter and Stripes invites travellers to discover forests with patience, learn from local naturalists and leave with more than photographs—a lasting understanding of why these places matter.`,
-    coverImage: '/assets/img/tadoba-guide-briefing.jpg',
+    coverImage: '/assets/img/Gallary/IMG_5234.webp',
     author: 'Sachin Neware — Founder and Principal Naturalist',
     readTime: '5 min read',
     destinationTag: 'Tadoba-Andhari'
@@ -91,7 +91,7 @@ Respectful wildlife viewing also means giving animals space and following the in
 A memorable safari does not have to be measured by the number of animals seen. It can also be measured by what you learned: how a call changed the mood of the forest, how a naturalist interpreted a track, or how different species shared the same habitat.
 
 With local naturalists and drivers bringing their knowledge to the journey, Shutter and Stripes encourages guests to slow down, listen carefully and see beyond the sighting.`,
-    coverImage: '/assets/img/jungle-dirt-road.jpg',
+    coverImage: '/assets/img/Hero/hero-4.webp',
     readTime: '4 min read'
   },
   {
@@ -137,7 +137,7 @@ Respect also means being curious about the wider place: its communities, livelih
 Responsible wildlife tourism is not a single action. It is a way of approaching a journey—with care for wildlife, respect for local expertise and awareness of the impact tourism can have.
 
 By centring local naturalists and community-minded travel, Shutter and Stripes invites guests to experience the wild while thinking about the people and relationships that help sustain it.`,
-    coverImage: '/assets/img/tadoba-str-guide.jpg',
+    coverImage: '/assets/img/Gallary/IMG_5238.webp',
     readTime: '4 min read'
   },
   {
@@ -183,7 +183,7 @@ Patience is not simply a way to improve a photograph; it is part of respecting t
 Different travellers notice different things. Families may enjoy learning to recognise tracks and calls; photographers may pay close attention to light, background and behaviour; first-time visitors may be captivated by the forest's sounds and scale.
 
 Shutter and Stripes creates tailored journeys around a traveller's interests and pace, with local naturalists and drivers helping guests understand the landscape. The best approach to Tadoba is to arrive curious, remain patient and let the forest set the rhythm.`,
-    coverImage: '/assets/img/tadoba-moharli-gate.jpg',
+    coverImage: '/assets/img/Gallary/IMG_5237.webp',
     readTime: '4 min read',
     destinationTag: 'Tadoba-Andhari'
   },
@@ -230,7 +230,7 @@ A missed photograph does not mean a missed experience. Sometimes listening, watc
 Different photographers have different goals. Some may want to learn about animal behaviour; others may be interested in birdlife, forest landscapes or improving their ability to notice light and composition. A tailored safari can help align the pace and focus of a trip with those interests.
 
 Shutter and Stripes offers customised expeditions across destinations in Maharashtra and Madhya Pradesh, with local expertise at the centre. The goal is not to promise a particular sighting, but to create the conditions for a thoughtful and rewarding learning experience.`,
-    coverImage: '/assets/img/safari-photographers-trail.jpg',
+    coverImage: '/assets/img/Gallary/IMG_5232.webp',
     readTime: '5 min read'
   },
   {
@@ -249,7 +249,7 @@ Rather than choosing a destination only because it is well known, consider what 
 
 ## Maharashtra: from Tadoba to lesser-known reserves
 
-Shutter and Stripes lists Tadoba Andhari Tiger Reserve (TATR), Pench, Nawegaon-Nagzira, Tipeshwar, Bor, Gothangaon, Melghat, Mogarkasa and Radhanagari among its Maharashtra destinations.
+Shutter and Stripes lists Tadoba Andhari Tiger Reserve (TATR), Pench, Nawegaon-Nagzira, Tipeshwar, Bor, Gothangaon, Melghat and Mogarkasa among its Maharashtra destinations.
 
 Tadoba has a particularly close connection to the brand through founder Sachin Neware's roots in Moharli and his years as a naturalist. But the wider list offers options for travellers interested in exploring beyond one familiar name. The right itinerary depends on your dates, interests and the kind of journey you want to create.
 
@@ -276,7 +276,7 @@ Shutter and Stripes builds its approach around local knowledge and the idea of t
 Whether you are drawn to Tadoba, curious about Pench, interested in Kanha or Bandhavgarh, or considering a cross-border circuit, the first step is to define what you want to learn and experience.
 
 With a customised itinerary and locally guided approach, Shutter and Stripes invites you to explore Maharashtra and Madhya Pradesh with curiosity, respect and a deeper appreciation for the places you visit.`,
-    coverImage: '/assets/img/tiger-golden-grassland.jpg',
+    coverImage: '/assets/img/Gallary/IMG_5245.webp',
     readTime: '5 min read',
     destinationTag: 'Central India'
   }

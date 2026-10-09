@@ -38,7 +38,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Premium independent forest cottage layouts at Tathastu Tadoba",
           "Lavish multi-cuisine buffet spreads",
-          "Core gate tracks registry",
+          "Core track registry",
           "Private AC sedan transport"
         ]
       },
@@ -72,7 +72,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Basic eco-resort stays near Sillari",
           "Standard Indian menus",
-          "Scheduled group gate transfers"
+          "Scheduled group transfers"
         ]
       },
       {
@@ -93,7 +93,7 @@ export const PACKAGES_BY_SLUG = {
         "max": 55000,
         "openEnded": true,
         "includes": [
-          "Boutique private glamping villas near boundary gates",
+          "Boutique private glamping villas near the boundary",
           "Bespoke estate dining",
           "Veteran trackers",
           "Private premium SUV allocations"
@@ -162,7 +162,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Clean rooms at Mahaforest Eco-Resorts",
           "Basic multi-cuisine fixed blocks",
-          "Gate transfers"
+          "Entry transfers"
         ]
       },
       {
@@ -173,7 +173,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Deluxe cabins at Nagzira Nature Camp",
           "Pool access",
-          "Core tracking gate priority",
+          "Core tracking priority",
           "Private AC transfers"
         ]
       },
@@ -249,9 +249,9 @@ export const PACKAGES_BY_SLUG = {
         "max": 17000,
         "openEnded": false,
         "includes": [
-          "Standard nature lodges near Sunna Gate",
+          "Standard nature lodges near Sunna",
           "Hot local-style meals",
-          "Direct gate pickups"
+          "Direct pickups"
         ]
       },
       {
@@ -296,7 +296,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Traditional rural eco-homestays",
           "Regional hand-cooked selections",
-          "Direct gate drops"
+          "Direct drops"
         ]
       },
       {
@@ -338,7 +338,7 @@ export const PACKAGES_BY_SLUG = {
         "max": 16500,
         "openEnded": false,
         "includes": [
-          "Basic eco-tented rest houses or village homestays near Pawani gate",
+          "Basic eco-tented rest houses or village homestays near Pawani",
           "Home-cooked Vidarbha cuisine",
           "Grouped highway transit"
         ]
@@ -351,7 +351,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Comfort cottages at organic farm-stay properties such as Anandvan Agrotourism",
           "Farm-to-table buffet spreads",
-          "Guaranteed slots via the new Mogarkasa gate",
+          "Guaranteed slots via the new Mogarkasa access",
           "Private sedan pickups"
         ]
       },
@@ -383,7 +383,7 @@ export const PACKAGES_BY_SLUG = {
         "max": 22500,
         "openEnded": false,
         "includes": [
-          "Cozy accommodation near Khatia Gate at Kanha Resort",
+          "Cozy accommodation near Khatia at Kanha Resort",
           "Fixed Indian menus",
           "Core tracking block access"
         ]
@@ -428,9 +428,9 @@ export const PACKAGES_BY_SLUG = {
         "max": 19500,
         "openEnded": false,
         "includes": [
-          "Clean courtyard safari units near Tala gate",
+          "Clean courtyard safari units near Tala",
           "Full buffet tracks",
-          "Reliable gate pickups"
+          "Reliable pickups"
         ]
       },
       {
@@ -487,7 +487,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Chic contemporary forest cabins at Sterling Padam Pench",
           "Expansive buffets",
-          "Turia core gate tracking",
+          "Turia core tracking",
           "Private AC sedan support"
         ]
       },
@@ -519,7 +519,7 @@ export const PACKAGES_BY_SLUG = {
         "max": 19000,
         "openEnded": false,
         "includes": [
-          "Clean backwater-view units near Madhai gate",
+          "Clean backwater-view units near Madhai",
           "Traditional village-style buffets",
           "Core access transfers"
         ]
@@ -564,7 +564,7 @@ export const PACKAGES_BY_SLUG = {
         "max": 17500,
         "openEnded": false,
         "includes": [
-          "Comfortable local heritage homestays near Madla gate",
+          "Comfortable local heritage homestays near Madla",
           "Fixed menu buffets",
           "Airport/station drops"
         ]
@@ -609,9 +609,9 @@ export const PACKAGES_BY_SLUG = {
         "max": 16500,
         "openEnded": false,
         "includes": [
-          "Clean forest rest-houses near Dubri gate",
+          "Clean forest rest-houses near Dubri",
           "Simple traditional buffet menus",
-          "Gate transfers"
+          "Entry transfers"
         ]
       },
       {
@@ -656,7 +656,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Clean transit eco-lodges near Bhimbetka",
           "Classic Indian set menus",
-          "Direct gate-drop coordination"
+          "Direct drop coordination"
         ]
       },
       {
@@ -698,7 +698,7 @@ export const PACKAGES_BY_SLUG = {
         "max": 18500,
         "openEnded": false,
         "includes": [
-          "Clean nature-adjacent rooms near Tiktoli Gate",
+          "Clean nature-adjacent rooms near Tiktoli",
           "Simple hot local dishes",
           "Station transfers"
         ]
@@ -744,7 +744,7 @@ export const PACKAGES_BY_SLUG = {
         "includes": [
           "Standard non-AC or standard AC rooming at the official Forest Department Rest House",
           "Basic local Malwi meals",
-          "Direct gate pickups"
+          "Direct pickups"
         ]
       },
       {

@@ -95,13 +95,13 @@ async function seedDatabase() {
         tagline: 'The Jewel of Vidarbha',
         shortDesc: 'Maharashtra’s oldest and premier tiger reserve, celebrated for fearless tiger dynasties, dense bamboo labyrinths, and legendary waterhole sightings.',
         editorialQuote: 'Tadoba is the colosseum of central Indian wildlife where legends like Maya, Matkasur, and Sonam carved their names into natural history.',
-        fullDesc: 'Situated in the Chandrapur district of Maharashtra, Tadoba-Andhari Tiger Reserve spans 1,727 sq km of pristine dry deciduous forest, teak ridges, and bamboo thickets. Anchored by the perennial Tadoba Lake, Telia Dam, and Erai Reservoir, the reserve offers unmatched year-round tiger encounters through its historic core gates and thriving community-led buffer zones.',
-        heroImage: '/assets/img/tadoba-str-guide.jpg',
+        fullDesc: 'Situated in the Chandrapur district of Maharashtra, Tadoba-Andhari Tiger Reserve spans 1,727 sq km of pristine dry deciduous forest, teak ridges, and bamboo thickets. Anchored by the perennial Tadoba Lake, Telia Dam, and Erai Reservoir, the reserve offers unmatched year-round tiger encounters through its historic core and thriving community-led buffer zones.',
+        heroImage: '/assets/img/Gallary/IMG_5238.webp',
         galleryImages: [
-          '/assets/img/tiger-trail-jeep.jpg',
-          '/assets/img/bengal-tiger-portrait.jpg',
-          '/assets/img/tadoba-moharli-gate.jpg',
-          '/assets/img/tadoba-guide-briefing.jpg'
+          '/assets/img/Gallary/IMG_5250.webp',
+          '/assets/img/Hero/hero-1.webp',
+          '/assets/img/Gallary/IMG_5237.webp',
+          '/assets/img/Gallary/IMG_5234.webp'
         ],
         areaSqKm: 1727,
         tigerCount: '115+ Royal Bengals (Estimated)',
@@ -114,31 +114,27 @@ async function seedDatabase() {
           {
             name: 'Moharli Core Zone',
             type: 'core',
-            gates: ['Moharli Gate'],
             vehicleQuotaPerDay: 42,
-            description: 'The historic central gateway with direct access to Telia Lake, Khatoda meadows, and high feline activity.',
+            description: 'The historic central sector with direct access to Telia Lake, Khatoda meadows, and high feline activity.',
             highlight: 'Legendary territory of famous royal Bengal lineages.'
           },
           {
             name: 'Kolara Core Zone',
             type: 'core',
-            gates: ['Kolara Gate'],
             vehicleQuotaPerDay: 36,
-            description: 'Northern gate offering rolling meadows, Jamunbodi waterhole, and tranquil sal canopies.',
+            description: 'Northern sector offering rolling meadows, Jamunbodi waterhole, and tranquil sal canopies.',
             highlight: 'Known for spectacular morning light and waterhole tracking.'
           },
           {
             name: 'Navegaon Core Zone',
             type: 'core',
-            gates: ['Navegaon Gate'],
             vehicleQuotaPerDay: 20,
-            description: 'Quiet northwestern gate leading into dense bamboo clusters.',
+            description: 'Quiet northwestern sector leading into dense bamboo clusters.',
             highlight: 'Uncrowded tracks and serene forest solitude.'
           },
           {
             name: 'Agauzari and Junona Buffer',
             type: 'buffer',
-            gates: ['Agauzari Gate', 'Junona Gate'],
             vehicleQuotaPerDay: 50,
             description: 'Community-protected thriving buffer belts with active resident felines and night safari options.',
             highlight: 'Open all year including the monsoon rejuvenation season.'
@@ -159,8 +155,8 @@ async function seedDatabase() {
         ],
         faqs: [
           {
-            question: 'Which gate is best for first-time visitors in Tadoba?',
-            answer: 'Moharli and Kolara are the most versatile core gateways with high permit allocations and excellent lodging infrastructure.'
+            question: 'Which zone is best for first-time visitors in Tadoba?',
+            answer: 'Moharli and Kolara are the most versatile core sectors with high permit allocations and excellent lodging infrastructure.'
           },
           {
             question: 'Are buffer zones worth visiting in Tadoba?',
@@ -175,12 +171,12 @@ async function seedDatabase() {
         tagline: 'The Original Mowgli Heartland (Sillari and Mansinghdeo)',
         shortDesc: 'The southern expanse of the legendary Kipling wilderness, featuring dramatic teak forests, tranquil backwaters, and pristine riverine corridors.',
         editorialQuote: 'Here, the Pench river carves through weathered rocks and whispering teak, preserving the untamed spirit of the classic jungle books.',
-        fullDesc: 'Pench Maharashtra encompasses 741 sq km across Nagpur district. Centered around the Sillari gate and the adjoining Mansinghdeo Sanctuary, it protects the vital southern wildlife corridor. Celebrated for its gentle terrain, high prey density, and picturesque waterholes, it offers exceptional photographic opportunities away from heavy tourist corridors.',
-        heroImage: '/assets/img/safari-trail-mist.jpg',
+        fullDesc: 'Pench Maharashtra encompasses 741 sq km across Nagpur district. Centered around the Sillari zone and the adjoining Mansinghdeo Sanctuary, it protects the vital southern wildlife corridor. Celebrated for its gentle terrain, high prey density, and picturesque waterholes, it offers exceptional photographic opportunities away from heavy tourist corridors.',
+        heroImage: '/assets/img/Gallary/IMG_5233.webp',
         galleryImages: [
-          '/assets/img/tiger-first-person-jeep.jpg',
-          '/assets/img/forest-canopy-sunbeams.jpg',
-          '/assets/img/leopard-stalking.jpg'
+          '/assets/img/Gallary/IMG_5239.webp',
+          '/assets/img/Hero/hero-3.webp',
+          '/assets/img/Hero/hero-5.webp'
         ],
         areaSqKm: 741,
         tigerCount: '45+ Resident and Corridor Tigers',
@@ -193,15 +189,13 @@ async function seedDatabase() {
           {
             name: 'Sillari Core Zone',
             type: 'core',
-            gates: ['Sillari Gate'],
             vehicleQuotaPerDay: 30,
-            description: 'Premier entry gate with classic deciduous woodland and historic river crossings.',
+            description: 'Premier entry sector with classic deciduous woodland and historic river crossings.',
             highlight: 'Superb leopard and tiger track density.'
           },
           {
             name: 'Chorbaoli Buffer Zone',
             type: 'buffer',
-            gates: ['Chorbaoli Gate'],
             vehicleQuotaPerDay: 25,
             description: 'Lush undulating corridor along the national highway eco-passages.',
             highlight: 'Fascinating twilight wildlife movement.'
@@ -221,7 +215,7 @@ async function seedDatabase() {
         faqs: [
           {
             question: 'How does Pench Maharashtra differ from Pench MP?',
-            answer: 'Pench Maharashtra covers the southern contiguous block via Sillari gate in Nagpur district, administered under Maharashtra Forest Department with its own independent booking quota.'
+            answer: 'Pench Maharashtra covers the southern contiguous block via the Sillari zone in Nagpur district, administered under Maharashtra Forest Department with its own independent booking quota.'
           }
         ]
       },
@@ -229,14 +223,14 @@ async function seedDatabase() {
         name: 'Umred-Karhandla Wildlife Sanctuary',
         slug: 'umred-karhandla',
         state: 'Maharashtra',
-        tagline: 'The Gateway Corridor of Vidarbha',
+        tagline: 'The Vidarbha Corridor',
         shortDesc: 'A dynamic wildlife corridor sanctuary famed as the home turf of legendary dispersing tigers like Jai and his progeny.',
         editorialQuote: 'Umred represents connectivity at its finest—a thriving bridge where tigers wander between Tadoba, Nagzira, and Pench.',
         fullDesc: 'Covering 189 sq km along the Wainganga river basin in Nagpur and Bhandara districts, Umred-Karhandla has gained international renown as one of central India’s fastest-growing tiger habitats, featuring open meadows, water storage reservoirs, and intimate safari tracks.',
-        heroImage: '/assets/img/tiger-walking-ahead.jpg',
+        heroImage: '/assets/img/Gallary/IMG_5262.webp',
         galleryImages: [
-          '/assets/img/bengal-tiger-portrait.jpg',
-          '/assets/img/photographers-green-gypsy.jpg'
+          '/assets/img/Hero/hero-1.webp',
+          '/assets/img/Hero/hero-9.webp'
         ],
         areaSqKm: 189,
         tigerCount: '18+ Resident Tigers',
@@ -249,7 +243,6 @@ async function seedDatabase() {
           {
             name: 'Karhandla Zone',
             type: 'core',
-            gates: ['Karhandla Gate'],
             vehicleQuotaPerDay: 20,
             description: 'Premier sector known for grassland sightings and reservoir perimeters.',
             highlight: 'Historical territory of the iconic mega-tiger Jai.'
@@ -257,7 +250,6 @@ async function seedDatabase() {
           {
             name: 'Umred Zone',
             type: 'core',
-            gates: ['Umred Gate'],
             vehicleQuotaPerDay: 15,
             description: 'Southern woodland sector offering intimate teak forest trails.',
             highlight: 'High bird diversity and sloth bear activity.'
@@ -271,7 +263,7 @@ async function seedDatabase() {
         },
         rulesAndGuidelines: [
           'Stay strictly within designated vehicle trails.',
-          'Early booking advised due to limited vehicle permits per gate.'
+          'Early booking advised due to limited vehicle permits per zone.'
         ],
         faqs: [
           {
@@ -288,10 +280,10 @@ async function seedDatabase() {
         shortDesc: 'A picturesque biodiversity haven of shimmering lakes, rocky plateaus, and ancient tribal forest legends in eastern Maharashtra.',
         editorialQuote: 'Nagzira’s tranquil waters reflect the untouched beauty of the Central Indian highlands.',
         fullDesc: 'Nestled between Bhandara and Gondia districts, Navegaon-Nagzira Tiger Reserve spans 653 sq km of rugged hills, bamboo valleys, and scenic reservoirs including Navegaon Lake. It serves as a critical tiger corridor connecting Tadoba, Kanha, and Pench.',
-        heroImage: '/assets/img/jungle-dirt-road.jpg',
+        heroImage: '/assets/img/Hero/hero-4.webp',
         galleryImages: [
-          '/assets/img/leopard-tree-gaze.jpg',
-          '/assets/img/forest-canopy-sunbeams.jpg'
+          '/assets/img/Hero/hero-7.webp',
+          '/assets/img/Hero/hero-3.webp'
         ],
         areaSqKm: 653,
         tigerCount: '15+ Tigers and Active Translocation Area',
@@ -304,7 +296,6 @@ async function seedDatabase() {
           {
             name: 'Nagzira Core',
             type: 'core',
-            gates: ['Nagzira Gate', 'Pitezari Gate'],
             vehicleQuotaPerDay: 24,
             description: 'Picturesque valley sector with natural water springs and watch towers.',
             highlight: 'Outstanding birdlife and leopard habitats.'
@@ -327,8 +318,8 @@ async function seedDatabase() {
         shortDesc: 'Among India’s initial 9 Project Tiger reserves, featuring colossal ravines, towering cliffs, and deep teak-dominated valleys.',
         editorialQuote: 'Melghat whispers of ancient wilderness where the forest owlet was rediscovered after a century of silence.',
         fullDesc: 'Covering an immense 1,677 sq km across the southern Satpura hill tracts in Amravati district, Melghat is drained by the Tapti river basin. Known for rugged topography and biodiversity, it is famous for the rediscovered Forest Owlet and thriving sloth bear populations.',
-        heroImage: '/assets/img/forest-canopy-sunbeams.jpg',
-        galleryImages: ['/assets/img/safari-gypsy-dust-trail.jpg', '/assets/img/leopard-stalking.jpg'],
+        heroImage: '/assets/img/Hero/hero-3.webp',
+        galleryImages: ['/assets/img/Gallary/IMG_5230.webp', '/assets/img/Hero/hero-5.webp'],
         areaSqKm: 1677,
         tigerCount: '50+ Royal Bengal Tigers',
         bestTimeToVisit: 'December to May',
@@ -340,7 +331,6 @@ async function seedDatabase() {
           {
             name: 'Semanadoh and Harisal Core',
             type: 'core',
-            gates: ['Semanadoh Gate', 'Kolkas Gate'],
             vehicleQuotaPerDay: 30,
             description: 'Rugged valley tracks descending to pristine rivers and tribal orchards.',
             highlight: 'Dramatic cliff vistas and rare raptor nesting sites.'
@@ -363,8 +353,8 @@ async function seedDatabase() {
         shortDesc: 'A compact 138 sq km gem bordering Wardha and Nagpur, boasting surprisingly dense feline populations and serene reservoir tracks.',
         editorialQuote: 'Bor proves that size is no barrier to profound wilderness and conservation triumph.',
         fullDesc: 'Recognized as India’s smallest tiger reserve, Bor acts as a vital stepping-stone corridor between Pench, Tadoba, and Melghat. The Bor reservoir provides magnificent scenery and reliable wildlife congregations year-round.',
-        heroImage: '/assets/img/tiger-grassland-gaze.jpg',
-        galleryImages: ['/assets/img/safari-photographers-trail.jpg', '/assets/img/tiger-leaves-peek.jpg'],
+        heroImage: '/assets/img/Gallary/IMG_5259.webp',
+        galleryImages: ['/assets/img/Gallary/IMG_5232.webp', '/assets/img/Gallary/IMG_5249.webp'],
         areaSqKm: 138,
         tigerCount: '10+ Resident Tigers and Corridor Cats',
         bestTimeToVisit: 'October to June',
@@ -376,7 +366,6 @@ async function seedDatabase() {
           {
             name: 'Bordi Core',
             type: 'core',
-            gates: ['Bordi Gate'],
             vehicleQuotaPerDay: 16,
             description: 'Waterside track with close encounters and minimal tourist crowding.',
             highlight: 'Intimate and peaceful safari drives.'
@@ -400,11 +389,11 @@ async function seedDatabase() {
         shortDesc: 'World-renowned for having one of the highest recorded tiger densities in the wild, set against the backdrop of a 2,000-year-old cliff-top fort.',
         editorialQuote: 'Bandhavgarh is the royal theater of Indian wildlife, where sheer sandstone cliffs watch over emerald sal meadows.',
         fullDesc: 'Spanning 1,536 sq km in the Umaria district of Madhya Pradesh, Bandhavgarh is steeped in mythology and natural majesty. Dominated by the ancient Bandhavgarh Fort and the reclining Shesh Shaiya Vishnu sculpture, the park features iconic core zones—Tala, Magadhi, and Khitauli—renowned worldwide for iconic tiger sightings and dramatic photography.',
-        heroImage: '/assets/img/royal-bengal-prowl.jpg',
+        heroImage: '/assets/img/Gallary/IMG_5229.webp',
         galleryImages: [
-          '/assets/img/photographer-fort-jeep.jpg',
-          '/assets/img/tiger-golden-grassland.jpg',
-          '/assets/img/tiger-foliage-portrait.jpg'
+          '/assets/img/Hero/hero-8.webp',
+          '/assets/img/Gallary/IMG_5245.webp',
+          '/assets/img/Gallary/IMG_5240.webp'
         ],
         areaSqKm: 1536,
         tigerCount: '135+ Royal Bengals (High Density)',
@@ -417,7 +406,6 @@ async function seedDatabase() {
           {
             name: 'Tala Core Zone',
             type: 'core',
-            gates: ['Tala Gate'],
             vehicleQuotaPerDay: 40,
             description: 'The historic premium zone with dramatic hill topography and Charanganga river meadows.',
             highlight: 'Ancient ruins, Shesh Shaiya, and historic tiger dynasties.'
@@ -425,7 +413,6 @@ async function seedDatabase() {
           {
             name: 'Magadhi Core Zone',
             type: 'core',
-            gates: ['Magadhi Gate (Gate 2)'],
             vehicleQuotaPerDay: 40,
             description: 'Open mixed forest with numerous perennial water springs and grassland tracks.',
             highlight: 'Consistently exceptional track record for tiger tracking.'
@@ -433,7 +420,6 @@ async function seedDatabase() {
           {
             name: 'Khitauli Core Zone',
             type: 'core',
-            gates: ['Khitauli Gate (Gate 3)'],
             vehicleQuotaPerDay: 35,
             description: 'Picturesque northern sector with gentle rolling sal hills and wild elephant herds.',
             highlight: 'Magnificent wilderness vistas and serene photography.'
@@ -465,11 +451,11 @@ async function seedDatabase() {
         shortDesc: 'India’s most celebrated national park, offering vast open savannahs (maidans), towering sal trees, and the miraculous conservation story of the Hardground Barasingha.',
         editorialQuote: 'Kanha’s rolling grasslands are the closest an Indian forest comes to the timeless majesty of the Serengeti.',
         fullDesc: 'Covering 2,051 sq km across Mandla and Balaghat districts, Kanha is celebrated as the flagship of Project Tiger. It inspired Rudyard Kipling’s Jungle Book and is the only global habitat where the swamp deer (Barasingha) was brought back from the edge of extinction. Features world-famous zones: Kanha, Kisli, Mukki, and Sarhi.',
-        heroImage: '/assets/img/elephants-safari-jeep.jpg',
+        heroImage: '/assets/img/Hero/hero-2.webp',
         galleryImages: [
-          '/assets/img/tiger-trail-jeep.jpg',
-          '/assets/img/bengal-tiger-portrait.jpg',
-          '/assets/img/forest-canopy-sunbeams.jpg'
+          '/assets/img/Gallary/IMG_5250.webp',
+          '/assets/img/Hero/hero-1.webp',
+          '/assets/img/Hero/hero-3.webp'
         ],
         areaSqKm: 2051,
         tigerCount: '120+ Royal Bengals',
@@ -482,7 +468,6 @@ async function seedDatabase() {
           {
             name: 'Kanha Core Zone',
             type: 'core',
-            gates: ['Khatia Gate'],
             vehicleQuotaPerDay: 45,
             description: 'The central maidan featuring expansive grasslands and the legendary Shravan Tal.',
             highlight: 'Iconic wide-open wildlife landscape photography.'
@@ -490,15 +475,13 @@ async function seedDatabase() {
           {
             name: 'Mukki Core Zone',
             type: 'core',
-            gates: ['Mukki Gate'],
             vehicleQuotaPerDay: 40,
-            description: 'Southern gateway characterized by meandering Banjar river corridors and sal forest.',
+            description: 'Southern sector characterized by meandering Banjar river corridors and sal forest.',
             highlight: 'Direct luxury lodge access and frequent tiger movements.'
           },
           {
             name: 'Kisli Core Zone',
             type: 'core',
-            gates: ['Kisli Gate'],
             vehicleQuotaPerDay: 35,
             description: 'Connecting ridge between Khatia and Kanha meadows.',
             highlight: 'Dense gaur herds and leopard tracking.'
@@ -528,12 +511,12 @@ async function seedDatabase() {
         tagline: 'The Classic Seoni Woodlands (Turia and Karmajhiri)',
         shortDesc: 'The northern heart of Kipling’s Mowgli territory in Seoni and Chhindwara, renowned for serene teak glades, open canopy visibility, and high predator density.',
         editorialQuote: 'Pench MP offers the quintessential dry deciduous safari experience with peerless light and gentle topography.',
-        fullDesc: 'Covering 1,179 sq km along the MP-Maharashtra border, Pench MP is managed by the Madhya Pradesh Forest Department through its iconic Turia, Karmajhiri, and Jamtara gates. The crystal waters of the Pench river bisect the reserve, creating tranquil backwaters where tigers, wild dogs, and massive gaur herds gather.',
-        heroImage: '/assets/img/safari-gypsy-dust-trail.jpg',
+        fullDesc: 'Covering 1,179 sq km along the MP-Maharashtra border, Pench MP is managed by the Madhya Pradesh Forest Department through its iconic Turia, Karmajhiri, and Jamtara zones. The crystal waters of the Pench river bisect the reserve, creating tranquil backwaters where tigers, wild dogs, and massive gaur herds gather.',
+        heroImage: '/assets/img/Gallary/IMG_5230.webp',
         galleryImages: [
-          '/assets/img/tiger-first-person-jeep.jpg',
-          '/assets/img/safari-gypsy-dust-trail.jpg',
-          '/assets/img/tiger-grassland-gaze.jpg'
+          '/assets/img/Gallary/IMG_5239.webp',
+          '/assets/img/Gallary/IMG_5230.webp',
+          '/assets/img/Gallary/IMG_5259.webp'
         ],
         areaSqKm: 1179,
         tigerCount: '75+ Royal Bengal Tigers',
@@ -546,7 +529,6 @@ async function seedDatabase() {
           {
             name: 'Turia Core Zone',
             type: 'core',
-            gates: ['Turia Gate'],
             vehicleQuotaPerDay: 48,
             description: 'The most popular entry with high prey visibility and scenic waterholes.',
             highlight: 'Famed home of Collarwali and her descendants.'
@@ -554,7 +536,6 @@ async function seedDatabase() {
           {
             name: 'Karmajhiri Core Zone',
             type: 'core',
-            gates: ['Karmajhiri Gate'],
             vehicleQuotaPerDay: 25,
             description: 'Northern sector featuring deeper forests and quieter safari trails.',
             highlight: 'Pristine wilderness and great leopard tracking.'
@@ -562,7 +543,6 @@ async function seedDatabase() {
           {
             name: 'Rukhad Buffer and Night Safari',
             type: 'buffer',
-            gates: ['Rukhad Gate'],
             vehicleQuotaPerDay: 20,
             description: 'Forested corridor between Pench and Kanha offering night drives.',
             highlight: 'Nocturnal wildlife exploration.'
@@ -576,12 +556,12 @@ async function seedDatabase() {
         },
         rulesAndGuidelines: [
           'Wednesdays afternoon safaris remain closed across MP core zones.',
-          'Gate check-in opens 30 minutes before sunrise.'
+          'Forest check-in opens 30 minutes before sunrise.'
         ],
         faqs: [
           {
             question: 'Is Pench MP close to Nagpur?',
-            answer: 'Yes, Turia gate is just a 2-hour drive from Nagpur airport, making it the most accessible MP core reserve.'
+            answer: 'Yes, Turia is just a 2-hour drive from Nagpur airport, making it the most accessible MP core reserve.'
           }
         ]
       },
@@ -593,8 +573,8 @@ async function seedDatabase() {
         shortDesc: 'A unique wonderland of sandstone peaks, deep gorges, and the Denwa backwaters, offering rare walking safaris, canoeing, and intimate leopard tracking.',
         editorialQuote: 'Satpura is the quiet connoisseur’s forest—untamed, experiential, and profoundly atmospheric.',
         fullDesc: 'Encompassing 2,133 sq km in Hoshangabad district, Satpura is unlike any other Indian tiger reserve. It is one of the very few reserves in India that legally permits guided walking safaris inside core buffers. Accessed by boat across the Denwa river, it is famous for sloth bears, Indian leopards, and the Malabar giant squirrel.',
-        heroImage: '/assets/img/bengal-tiger-portrait.jpg',
-        galleryImages: ['/assets/img/safari-trail-mist.jpg', '/assets/img/leopard-stalking.jpg'],
+        heroImage: '/assets/img/Hero/hero-1.webp',
+        galleryImages: ['/assets/img/Gallary/IMG_5233.webp', '/assets/img/Hero/hero-5.webp'],
         areaSqKm: 2133,
         tigerCount: '52+ Resident Tigers',
         bestTimeToVisit: 'October to mid-June',
@@ -606,7 +586,6 @@ async function seedDatabase() {
           {
             name: 'Madhai Core Zone',
             type: 'core',
-            gates: ['Madhai Gate (Boat Crossing)'],
             vehicleQuotaPerDay: 30,
             description: 'Entered via motorboat across Denwa river into pristine mixed forests.',
             highlight: 'Walking safaris, night drives, and canoeing.'
@@ -629,8 +608,8 @@ async function seedDatabase() {
         shortDesc: 'Renowned worldwide for one of history’s greatest conservation miracles—bringing tigers back from zero to over 55 thriving individuals along the Ken River gorges.',
         editorialQuote: 'Panna is proof that with political willpower and dedicated field science, nature can rise from the ashes.',
         fullDesc: 'Covering 1,598 sq km across Panna and Chhatarpur districts, Panna Tiger Reserve is dominated by the gorges and cascading waterfalls of the Ken River. Famous for dramatic vulture nesting cliffs, boat safaris, and flourishing tiger populations.',
-        heroImage: '/assets/img/tiger-first-person-jeep.jpg',
-        galleryImages: ['/assets/img/photographer-fort-jeep.jpg', '/assets/img/tiger-golden-grassland.jpg'],
+        heroImage: '/assets/img/Gallary/IMG_5239.webp',
+        galleryImages: ['/assets/img/Hero/hero-8.webp', '/assets/img/Gallary/IMG_5245.webp'],
         areaSqKm: 1598,
         tigerCount: '55+ Royal Bengal Tigers',
         bestTimeToVisit: 'October to May',
@@ -642,15 +621,13 @@ async function seedDatabase() {
           {
             name: 'Madla Core Zone',
             type: 'core',
-            gates: ['Madla Gate'],
             vehicleQuotaPerDay: 32,
-            description: 'Scenic gateway alongside the Ken river with teak plateaus.',
+            description: 'Scenic sector alongside the Ken river with teak plateaus.',
             highlight: 'Ken river boat safaris and tiger tracking.'
           },
           {
             name: 'Hinouta Core Zone',
             type: 'core',
-            gates: ['Hinouta Gate'],
             vehicleQuotaPerDay: 20,
             description: 'Gorge sector featuring Dhundhwa seha and vulture nesting viewpoints.',
             highlight: 'Spectacular cliff vistas and leopard territory.'
@@ -663,7 +640,7 @@ async function seedDatabase() {
           road: 'Paved highway connecting from Khajuraho UNESCO temples'
         },
         rulesAndGuidelines: ['Ken river boating subject to river water levels.'],
-        faqs: [{ question: 'How close is Panna to Khajuraho?', answer: 'Madla gate is just 25 km (30 minutes drive) from the Khajuraho airport and UNESCO temple complex.' }]
+        faqs: [{ question: 'How close is Panna to Khajuraho?', answer: 'Madla is just 25 km (30 minutes drive) from the Khajuraho airport and UNESCO temple complex.' }]
       },
       {
         name: 'Sanjay-Dubri Tiger Reserve',
@@ -673,8 +650,8 @@ async function seedDatabase() {
         shortDesc: 'A sprawling 1,674 sq km untamed paradise of quiet sal forests, perennial rivers, and vital corridors connecting Bandhavgarh with Guru Ghasidas in Chhattisgarh.',
         editorialQuote: 'Dubri is wilderness in its purest sense—expansive, quiet, and deeply authentic.',
         fullDesc: 'Located in the Sidhi and Shahdol districts, Sanjay-Dubri Tiger Reserve is known historically as the forest where the world’s first white tiger was discovered in 1951. Today it thrives with rebounding tiger populations and serene bamboo forests.',
-        heroImage: '/assets/img/jungle-dirt-road.jpg',
-        galleryImages: ['/assets/img/royal-bengal-prowl.jpg', '/assets/img/forest-canopy-sunbeams.jpg'],
+        heroImage: '/assets/img/Hero/hero-4.webp',
+        galleryImages: ['/assets/img/Gallary/IMG_5229.webp', '/assets/img/Hero/hero-3.webp'],
         areaSqKm: 1674,
         tigerCount: '35+ Tigers and Elephant Corridor',
         bestTimeToVisit: 'November to May',
@@ -686,7 +663,6 @@ async function seedDatabase() {
           {
             name: 'Dubri Core',
             type: 'core',
-            gates: ['Dubri Gate'],
             vehicleQuotaPerDay: 20,
             description: 'Vast sal woodland with zero vehicle congestion.',
             highlight: 'Unspoiled forest feel and active wild elephant herds.'
@@ -709,8 +685,8 @@ async function seedDatabase() {
         shortDesc: 'India’s historic savannah sanctuary in Sheopur, chosen for the world’s first intercontinental translocation of cheetahs to restore Asian grasslands.',
         editorialQuote: 'At Kuno, the speed and elegance of the cheetah returns to the Indian landscape after seven decades of absence.',
         fullDesc: 'Covering 748 sq km of open grassland savannahs, Kardhai woodlands, and rocky ravines carved by the Kuno river, Kuno National Park stands at the center of world conservation history as the release site for Project Cheetah.',
-        heroImage: '/assets/img/tiger-golden-grassland.jpg',
-        galleryImages: ['/assets/img/photographers-green-gypsy.jpg', '/assets/img/safari-trail-mist.jpg'],
+        heroImage: '/assets/img/Gallary/IMG_5245.webp',
+        galleryImages: ['/assets/img/Hero/hero-9.webp', '/assets/img/Gallary/IMG_5233.webp'],
         areaSqKm: 748,
         tigerCount: 'Cheetah Sanctuary + Resident Leopards',
         bestTimeToVisit: 'October to April',
@@ -722,7 +698,6 @@ async function seedDatabase() {
           {
             name: 'Ahera and Peepalbawdi Zones',
             type: 'core',
-            gates: ['Tiktoli Gate', 'Ahera Gate'],
             vehicleQuotaPerDay: 20,
             description: 'Grassland savannahs and Kardhai groves bordering the Kuno river.',
             highlight: 'Grassland wildlife tracking and Project Cheetah territory.'
@@ -792,9 +767,9 @@ async function seedDatabase() {
         capacity: 6,
         zones: dest.zones.map(z => z.name),
         basePrice: dest.startingPrice,
-        description: `Early dawn safari entering at gate opening. Optimal light for wildlife photography, fresh feline pugmarks, and active alarm calls.`,
+        description: `Early dawn safari entering at opening. Optimal light for wildlife photography, fresh feline pugmarks, and active alarm calls.`,
         inclusions: ['4x4 Safari Jeep Permit', 'Certified Forest Department Naturalist', 'Taxes and Entry Fees', 'Morning Coffee and Tea Pack'],
-        exclusions: ['Camera telephoto lens permits (if applicable)', 'Hotel pickup outside gate boundary'],
+        exclusions: ['Camera telephoto lens permits (if applicable)', 'Hotel pickup outside the reserve boundary'],
         highlights: ['First tracks on sand trails', 'Golden hour morning illumination', 'Bird activity peak'],
         availableDays: ['Everyday except Wednesday afternoons in MP'],
         availabilityStatus: 'AVAILABLE'
@@ -900,7 +875,7 @@ for (const s of safarisData) {
     const galleryData = [
       {
         title: 'Eyes in the Sal Forest',
-        imageUrl: '/assets/img/bengal-tiger-portrait.jpg',
+        imageUrl: '/assets/img/Hero/hero-1.webp',
         animal: 'Tiger',
         destinationName: 'Bandhavgarh Tiger Reserve',
         state: 'Madhya Pradesh',
@@ -910,7 +885,7 @@ for (const s of safarisData) {
       },
       {
         title: 'Morning Patrol on the Red Soil',
-        imageUrl: '/assets/img/tiger-trail-jeep.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5250.webp',
         animal: 'Tiger',
         destinationName: 'Tadoba-Andhari Tiger Reserve',
         state: 'Maharashtra',
@@ -920,7 +895,7 @@ for (const s of safarisData) {
       },
       {
         title: 'The Silent Watcher of the Thicket',
-        imageUrl: '/assets/img/leopard-stalking.jpg',
+        imageUrl: '/assets/img/Hero/hero-5.webp',
         animal: 'Leopard',
         destinationName: 'Pench Tiger Reserve',
         state: 'Maharashtra',
@@ -930,7 +905,7 @@ for (const s of safarisData) {
       },
       {
         title: 'Field Guide and Forest Knowledge',
-        imageUrl: '/assets/img/tadoba-guide-briefing.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5234.webp',
         animal: 'Safari Life',
         destinationName: 'Tadoba-Andhari Tiger Reserve',
         state: 'Maharashtra',
@@ -940,7 +915,7 @@ for (const s of safarisData) {
       },
       {
         title: 'In Front of the Safari Vehicle',
-        imageUrl: '/assets/img/tiger-walking-ahead.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5262.webp',
         animal: 'Tiger',
         destinationName: 'Umred-Karhandla Wildlife Sanctuary',
         state: 'Maharashtra',
@@ -950,7 +925,7 @@ for (const s of safarisData) {
       },
       {
         title: 'God Rays Through the Bamboo Canopy',
-        imageUrl: '/assets/img/forest-canopy-sunbeams.jpg',
+        imageUrl: '/assets/img/Hero/hero-3.webp',
         animal: 'Forest Landscape',
         destinationName: 'Kanha Tiger Reserve',
         state: 'Madhya Pradesh',
@@ -960,7 +935,7 @@ for (const s of safarisData) {
       },
       {
         title: 'Gentle Giants in Morning Mist',
-        imageUrl: '/assets/img/elephants-safari-jeep.jpg',
+        imageUrl: '/assets/img/Hero/hero-2.webp',
         animal: 'Elephant',
         destinationName: 'Bandhavgarh Tiger Reserve',
         state: 'Madhya Pradesh',
@@ -970,7 +945,7 @@ for (const s of safarisData) {
       },
       {
         title: 'First-Person Safari Encounter',
-        imageUrl: '/assets/img/tiger-first-person-jeep.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5239.webp',
         animal: 'Tiger',
         destinationName: 'Panna Tiger Reserve',
         state: 'Madhya Pradesh',
@@ -980,7 +955,7 @@ for (const s of safarisData) {
       },
       {
         title: 'Guardian of the Reserve — Tadoba STR Guide',
-        imageUrl: '/assets/img/tadoba-str-guide.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5238.webp',
         animal: 'Safari Life',
         destinationName: 'Tadoba-Andhari Tiger Reserve',
         state: 'Maharashtra',
@@ -990,7 +965,7 @@ for (const s of safarisData) {
       },
       {
         title: 'The Stare from the Shadows',
-        imageUrl: '/assets/img/tiger-leaves-peek.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5249.webp',
         animal: 'Tiger',
         destinationName: 'Tadoba-Andhari Tiger Reserve',
         state: 'Maharashtra',
@@ -1000,7 +975,7 @@ for (const s of safarisData) {
       },
       {
         title: 'Golden Dust on the Safari Trail',
-        imageUrl: '/assets/img/safari-gypsy-dust-trail.jpg',
+        imageUrl: '/assets/img/Gallary/IMG_5230.webp',
         animal: 'Safari Life',
         destinationName: 'Pench Tiger Reserve',
         state: 'Madhya Pradesh',
@@ -1010,7 +985,7 @@ for (const s of safarisData) {
       },
       {
         title: 'The Leap of the Leopard',
-        imageUrl: '/assets/img/leopard-tree-gaze.jpg',
+        imageUrl: '/assets/img/Hero/hero-7.webp',
         animal: 'Leopard',
         destinationName: 'Satpura Tiger Reserve',
         state: 'Madhya Pradesh',
@@ -1031,7 +1006,7 @@ for (const s of safarisData) {
         category: 'Photography',
         excerpt: 'Why patience, vehicle positioning, and absolute respect for animal distance trump aggressive lens pursuit every single time.',
         content: `### Beyond the Trophy Shot\n\nTrue wildlife photography begins long before you press the shutter. In the dry deciduous canopies of central India, animal ethics and respectful distance are paramount.\n\n#### The Golden Rules of Indian Jungle Photography:\n1. **Zero Animal Disturbance**: Never ask your driver to maneuver aggressively or cut off an animal's path.\n2. **Silence Over Speed**: Wildlife senses sound and vibrations. A vehicle that cuts its engine and waits quietly will always yield richer behavioral moments.\n3. **Natural Light Mastery**: Morning light in sal forests creates soft, diffused rims. Use high shutter speeds without relying on artificial lighting or flashes.\n\n*"A great photograph celebrates the animal’s kingdom, never its inconvenience."*`,
-        coverImage: '/assets/img/photographer-fort-jeep.jpg',
+        coverImage: '/assets/img/Hero/hero-8.webp',
         author: 'Sachin — Founder and Principal Naturalist',
         readTime: '6 min read',
         destinationTag: 'Bandhavgarh'
@@ -1042,7 +1017,7 @@ for (const s of safarisData) {
         category: 'Destinations',
         excerpt: 'Understanding the terrain, waterholes, and seasonal movements of Maharashtra’s greatest tiger sanctuary.',
         content: `### Why Tadoba Captivates the World\n\nTadoba-Andhari in Chandrapur is legendary for a reason. Unlike many northern reserves that close during the monsoon, Tadoba’s buffer zones stay active all year.\n\nFrom the ancient Telia Dam to the rolling grasslands of Moharli, tigers here have coexisted alongside experienced tribal guides for decades, creating observational encounters that redefine human connection with nature.`,
-        coverImage: '/assets/img/tadoba-moharli-gate.jpg',
+        coverImage: '/assets/img/Gallary/IMG_5237.webp',
         author: 'Vidarbha Field Research Team',
         readTime: '8 min read',
         destinationTag: 'Tadoba-Andhari'
@@ -1051,9 +1026,9 @@ for (const s of safarisData) {
         title: 'Comparing the Twin Sisters: Pench MP vs. Pench Maharashtra',
         slug: 'comparing-pench-mp-vs-pench-maharashtra',
         category: 'Safari Guide',
-        excerpt: 'Understanding the distinct gateways, administration, and landscape character of the two sides of Kipling’s river.',
+        excerpt: 'Understanding the distinct sectors, administration, and landscape character of the two sides of Kipling’s river.',
         content: `### One Forest, Two States, Two Unique Experiences\n\nMany travelers are confused when booking Pench. The reserve is split between Madhya Pradesh (Seoni and Chhindwara) and Maharashtra (Nagpur).\n\n- **Pench MP (Turia and Karmajhiri)**: Known for open teak woodlands, white ghost trees (Kullu), and expansive morning visibility.\n- **Pench Maharashtra (Sillari and Mansinghdeo)**: Denser riverine banks, quiet buffer corridors, and proximity to Nagpur airport.\n\nBoth are essential jewels of Central India's tiger landscape.`,
-        coverImage: '/assets/img/safari-trail-mist.jpg',
+        coverImage: '/assets/img/Gallary/IMG_5233.webp',
         author: 'Editorial Desk',
         readTime: '5 min read',
         destinationTag: 'Pench'
@@ -1065,7 +1040,7 @@ for (const s of safarisData) {
         category: 'Wildlife',
         excerpt: 'Field observations, tracking notes and seasonal natural-history updates from our core reserves.',
         content: `### Coming Soon\n\nThis is where Sachin's field notes will live — tracking data, seasonal sightings, and natural-history observations gathered across our reserves.\n\nSubscribe to be notified when the first entry publishes.`,
-        coverImage: '/assets/img/photographer-fort-jeep.jpg',
+        coverImage: '/assets/img/Hero/hero-8.webp',
         author: 'Sachin — Founder and Principal Naturalist',
         readTime: '4 min read',
         destinationTag: 'Core Reserves'
@@ -1085,7 +1060,7 @@ for (const s of safarisData) {
       {
         category: 'Booking',
         question: 'What documents are required to confirm a safari booking?',
-        answer: 'State forest departments mandate official government-issued photo identity proof (Passport for international travelers; Aadhaar card, Voter ID, or Driving License for Indian nationals). The exact ID used at the time of booking must be presented in original at the gate.'
+        answer: 'State forest departments mandate official government-issued photo identity proof (Passport for international travelers; Aadhaar card, Voter ID, or Driving License for Indian nationals). The exact ID used at the time of booking must be presented in original at the forest entry.'
       },
       {
         category: 'Safari',
@@ -1188,7 +1163,7 @@ for (const s of safarisData) {
       tagline: 'Guided by Locals • Inspired by Nature',
       contactEmail: 'concierge@shutterandstripes.com',
       contactPhone: '+91 (0) 712 258 4930',
-      officeAddress: 'Civil Lines, Nagpur, Maharashtra 440001 (Gateway to Central Indian Tiger Reserves)',
+      officeAddress: 'Civil Lines, Nagpur, Maharashtra 440001 (Base for Central Indian Tiger Reserves)',
       emergencySupport: '+91 98230 45678'
     });
 

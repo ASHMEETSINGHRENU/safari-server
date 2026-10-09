@@ -5,7 +5,7 @@ const SiteSettingsSchema = new mongoose.Schema({
   tagline: { type: String, default: 'Guided by Locals • Inspired by Nature' },
   contactEmail: { type: String, default: 'concierge@shutterandstripes.com' },
   contactPhone: { type: String, default: '+91 (0) 712 258 4930' },
-  officeAddress: { type: String, default: 'Civil Lines, Nagpur, Maharashtra 440001 (Gateway to Central Indian Tiger Reserves)' },
+  officeAddress: { type: String, default: 'Civil Lines, Nagpur, Maharashtra 440001 (Base for Central Indian Tiger Reserves)' },
   emergencySupport: { type: String, default: '+91 98230 45678' },
   socialLinks: {
     instagram: { type: String, default: 'https://instagram.com/shutterandstripes' },

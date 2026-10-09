@@ -21,8 +21,8 @@ export const NEW_DESTINATIONS = [
     shortDesc: 'A compact, low-traffic sanctuary celebrated for exceptionally high tiger cub survival and intimate, unhurried photographic sightings.',
     editorialQuote: 'Tipeshwar is where the next generation of Vidarbha tigers is quietly raised, far from the convoy.',
     fullDesc: 'Spread across 148.63 sq km in Yavatmal district, Tipeshwar Wildlife Sanctuary guards the southern watershed of the Penganga river. Its teak-and-bamboo hills, perennial streams, and dense undergrowth have produced one of central India’s most reliable tiger breeding records, with tigresses routinely raising full litters in the open core.',
-    heroImage: '/assets/img/tiger-golden-grassland.jpg',
-    galleryImages: ['/assets/img/leopard-tree-gaze.jpg', '/assets/img/forest-canopy-sunbeams.jpg'],
+    heroImage: '/assets/img/Gallary/IMG_5245.webp',
+    galleryImages: ['/assets/img/Hero/hero-7.webp', '/assets/img/Hero/hero-3.webp'],
     areaSqKm: 148.63,
     tigerCount: '10+ Tigers (High Cub Survival)',
     bestTimeToVisit: 'October to June',
@@ -38,7 +38,6 @@ export const NEW_DESTINATIONS = [
       {
         name: 'Tipeshwar Core Zone',
         type: 'core',
-        gates: ['Sunna Gate', 'Ghonsa Gate'],
         vehicleQuotaPerDay: 16,
         description: 'Rolling teak hills and stream beds with low vehicle density.',
         highlight: 'Frequent tigress-and-cubs encounters.'
@@ -46,7 +45,6 @@ export const NEW_DESTINATIONS = [
       {
         name: 'Tipeshwar Buffer Zone',
         type: 'buffer',
-        gates: ['Tipeshwar Buffer Gate'],
         vehicleQuotaPerDay: 12,
         description: 'Community-protected fringe forest open beyond the core season.',
         highlight: 'Quiet leopard and sloth bear tracks.'
@@ -60,7 +58,7 @@ export const NEW_DESTINATIONS = [
     },
     rulesAndGuidelines: [
       'Entry permits must be matched with original government photo IDs.',
-      'Limited vehicle quota per gate — book permits well in advance.',
+      'Limited vehicle quota per zone — book permits well in advance.',
       'No disembarking from safari vehicles under any circumstances.'
     ],
     faqs: [
@@ -77,9 +75,9 @@ export const NEW_DESTINATIONS = [
     tagline: 'The Black Panther Frontier',
     shortDesc: 'A raw, untamed corridor reserve bordering Pench, famed for its resident melanistic leopard and intimate big-cat observation.',
     editorialQuote: 'Mogarkasa is the frontier where the forest still keeps its rarest secret — a black panther moving through the sal.',
-    fullDesc: 'Mogarkasa Conservation Reserve protects a vital wildlife corridor adjoining the Pench-Mogarkasa landscape in eastern Vidarbha. Untamed trails, organic farm-stay country, and a new access gate make it one of the most sought-after destinations for photographers chasing the famous melanistic leopard alongside tigers and wild dogs.',
-    heroImage: '/assets/img/leopard-tree-gaze.jpg',
-    galleryImages: ['/assets/img/leopard-stalking.jpg', '/assets/img/safari-gypsy-dust-trail.jpg'],
+    fullDesc: 'Mogarkasa Conservation Reserve protects a vital wildlife corridor adjoining the Pench-Mogarkasa landscape in eastern Vidarbha. Untamed trails, organic farm-stay country, and new access make it one of the most sought-after destinations for photographers chasing the famous melanistic leopard alongside tigers and wild dogs.',
+    heroImage: '/assets/img/Hero/hero-7.webp',
+    galleryImages: ['/assets/img/Hero/hero-5.webp', '/assets/img/Gallary/IMG_5230.webp'],
     areaSqKm: 76,
     tigerCount: 'Resident Tiger & Melanistic Leopard',
     bestTimeToVisit: 'October to June',
@@ -95,7 +93,6 @@ export const NEW_DESTINATIONS = [
       {
         name: 'Mogarkasa Core Zone',
         type: 'core',
-        gates: ['Pawani Gate', 'Mogarkasa Gate'],
         vehicleQuotaPerDay: 12,
         description: 'Undulating corridor forest bordering the Pench-Mogarkasa block.',
         highlight: 'Track of the resident melanistic leopard (Blackey).'
@@ -120,54 +117,6 @@ export const NEW_DESTINATIONS = [
     ]
   },
   {
-    name: 'Radhanagari Wildlife Sanctuary',
-    slug: 'radhanagari',
-    state: 'Maharashtra',
-    tagline: 'The Western Ghats Bison Reserve',
-    shortDesc: 'A Sahyadri stronghold of the Indian bison (Gaur), western Ghats endemics, and the headwaters of the Radhanagari reservoir.',
-    editorialQuote: 'Radhanagari is the rare meeting of the tiger plains and the rainforest ghats — a bridge of mist, gaur, and endemic life.',
-    fullDesc: 'Radhanagari Wildlife Sanctuary spans about 351 sq km in the Sahyadri ranges of Kolhapur district, guarding the catchment of the Radhanagari dam. It is the only place in Maharashtra where the Indian bison, Indian giant squirrel, and a rich Western Ghats endemic bird community share a single reserve, with historic links to India’s earliest wildlife conservation legislation.',
-    heroImage: '/assets/img/forest-canopy-sunbeams.jpg',
-    galleryImages: ['/assets/img/jungle-dirt-road.jpg', '/assets/img/leopard-tree-gaze.jpg'],
-    areaSqKm: 351,
-    tigerCount: 'Gaur (Indian Bison) Stronghold',
-    bestTimeToVisit: 'October to May',
-    coordinates: { lat: 16.2707, lng: 74.0215 },
-    mapPosition: { x: 18, y: 90 },
-    // ponytail: no package tiers in the Content Master yet — null renders as "On request"
-    // everywhere (packageFromOf falls back to startingPrice). Set the real tiers to enable booking.
-    startingPrice: null,
-    availability: 'LIMITED',
-    bestSuitedFor: 'Western Ghats endemic species zones, gaur herds, and lush monsoon rainforest.',
-    gateway: 'Kolhapur (50 km) or Pune',
-    zones: [
-      {
-        name: 'Dajipur Core Zone',
-        type: 'core',
-        gates: ['Dajipur Gate', 'Radhanagari Gate'],
-        vehicleQuotaPerDay: 15,
-        description: 'Western Ghats evergreen and semi-evergreen forest around the reservoir.',
-        highlight: 'Large gaur herds and Indian giant squirrel.'
-      }
-    ],
-    wildlifeHighlights: ['Gaur (Indian Bison)', 'Indian Giant Squirrel', 'Indian Leopard', 'Sloth Bear', 'Malabar Pied Hornbill', 'Western Ghats Endemics'],
-    howToReach: {
-      air: 'Kolhapur Airport (60 km) or Pune Airport (250 km)',
-      rail: 'Kolhapur Railway Station (50 km)',
-      road: 'Connected via NH 48 and the Radhanagari dam road through Kolhapur'
-    },
-    rulesAndGuidelines: [
-      'Sanctuary entry strictly via designated gates with forest permission.',
-      'Monsoon access is limited — confirm gate status before travel.'
-    ],
-    faqs: [
-      {
-        question: 'Is Radhanagari a tiger reserve?',
-        answer: 'No — it is a wildlife sanctuary best known for its Indian bison (gaur) population and Western Ghats endemic species, though leopards and occasional tigers move through.'
-      }
-    ]
-  },
-  {
     name: 'Ratapani Tiger Reserve',
     slug: 'ratapani',
     state: 'Madhya Pradesh',
@@ -175,8 +124,8 @@ export const NEW_DESTINATIONS = [
     shortDesc: 'A re-notified tiger reserve of teak forests and rocky outcrops, adjoining the UNESCO World Heritage Bhimbetka rock shelters.',
     editorialQuote: 'Ratapani pairs the deep teak forest with the first art of humanity — wilderness beneath a wall of ancient rock.',
     fullDesc: 'Ratapani Tiger Reserve protects about 823 sq km of teak-dominated forest across Raisen and Sehore districts, close to Bhopal. Its reservoirs, rocky plateaus, and dense leopard territories overlap the Bhimbetka rock shelters, giving the reserve a unique blend of natural and prehistoric heritage.',
-    heroImage: '/assets/img/leopard-stalking.jpg',
-    galleryImages: ['/assets/img/safari-trail-mist.jpg', '/assets/img/tiger-foliage-portrait.jpg'],
+    heroImage: '/assets/img/Hero/hero-5.webp',
+    galleryImages: ['/assets/img/Gallary/IMG_5233.webp', '/assets/img/Gallary/IMG_5240.webp'],
     areaSqKm: 823,
     tigerCount: 'High-Density Leopards & Rising Tigers',
     bestTimeToVisit: 'October to June',
@@ -192,7 +141,6 @@ export const NEW_DESTINATIONS = [
       {
         name: 'Ratapani Core Zone',
         type: 'core',
-        gates: ['Bamhori Gate', 'Kolar Gate'],
         vehicleQuotaPerDay: 20,
         description: 'Teak forest and reservoir country with rocky escarpments.',
         highlight: 'Leopard tracking beside the Bhimbetka heritage belt.'
@@ -200,7 +148,6 @@ export const NEW_DESTINATIONS = [
       {
         name: 'Ratapani Buffer Zone',
         type: 'buffer',
-        gates: ['Salkanpur Buffer Gate'],
         vehicleQuotaPerDay: 15,
         description: 'Fringe forest and farmland edge with strong leopard movement.',
         highlight: 'Open beyond the core season.'
@@ -219,7 +166,7 @@ export const NEW_DESTINATIONS = [
     faqs: [
       {
         question: 'How far is Ratapani from Bhopal?',
-        answer: 'The core gates are roughly an hour’s drive from Bhopal, making Ratapani the most convenient wildlife break from the state capital.'
+        answer: 'The core zones are roughly an hour’s drive from Bhopal, making Ratapani the most convenient wildlife break from the state capital.'
       }
     ]
   },
@@ -231,8 +178,8 @@ export const NEW_DESTINATIONS = [
     shortDesc: 'A crowd-free teak sanctuary with resident breeding tigers and one of central India’s richest budgets for birdwatchers.',
     editorialQuote: 'Kheoni is the quiet forest — no convoys, no clamour, just teak, resident tigers, and a dawn chorus.',
     fullDesc: 'Kheoni Wildlife Sanctuary spreads across roughly 133 sq km on the Vindhyan edge of Dewas and Sehore districts. Managed as an ecotourism pioneer by the MP Ecotourism Board, it offers budget-friendly, low-traffic safaris through teak and bamboo towards reliable tiger breeding areas and over 170 recorded bird species.',
-    heroImage: '/assets/img/safari-trail-mist.jpg',
-    galleryImages: ['/assets/img/tiger-trail-jeep.jpg', '/assets/img/forest-canopy-sunbeams.jpg'],
+    heroImage: '/assets/img/Gallary/IMG_5233.webp',
+    galleryImages: ['/assets/img/Gallary/IMG_5250.webp', '/assets/img/Hero/hero-3.webp'],
     areaSqKm: 133,
     tigerCount: 'Breeding Tigers (170+ Bird Species)',
     bestTimeToVisit: 'October to June',
@@ -248,7 +195,6 @@ export const NEW_DESTINATIONS = [
       {
         name: 'Kheoni Core Zone',
         type: 'core',
-        gates: ['Kheoni Gate (Badi)', 'Kheoni Gate (Chhoti)'],
         vehicleQuotaPerDay: 14,
         description: 'Teak and bamboo core with the official Eco Jungle Camp at its edge.',
         highlight: 'Resident breeding tigers with almost no vehicle traffic.'

@@ -10,6 +10,9 @@
     "seed": "node src/seed/seed.js",
     "sync:editorial": "node src/seed/syncEditorial.js",
     "add:destinations": "node src/seed/addDestinations.js",
+    "remove:destination": "node src/seed/removeDestination.js",
+    "add:gallery": "node src/seed/addGallery.js",
+    "prune:gallery": "node src/seed/pruneGallery.js",
     "check:pricing": "node pricing.check.mjs",
     "smoke": "node smoke.mjs"
   },
