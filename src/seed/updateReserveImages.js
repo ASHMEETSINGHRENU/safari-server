@@ -17,7 +17,7 @@ const IMAGE_UPDATES = {
   // sanjay-dubri: no change
   'tadoba-andhari': '/assets/img/Gallary/IMG_5250.webp',
   'tipeshwar': '/assets/img/reserves/tipeshwar.webp',
-  'umred-karhandla': '/assets/img/Gallary/IMG_5262.webp',
+  'umred-karhandla': '/assets/img/reserves/umred.webp',
 };
 
 async function run() {

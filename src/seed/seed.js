@@ -227,7 +227,7 @@ async function seedDatabase() {
         shortDesc: 'A dynamic wildlife corridor sanctuary famed as the home turf of legendary dispersing tigers like Jai and his progeny.',
         editorialQuote: 'Umred represents connectivity at its finest—a thriving bridge where tigers wander between Tadoba, Nagzira, and Pench.',
         fullDesc: 'Covering 189 sq km along the Wainganga river basin in Nagpur and Bhandara districts, Umred-Karhandla has gained international renown as one of central India’s fastest-growing tiger habitats, featuring open meadows, water storage reservoirs, and intimate safari tracks.',
-        heroImage: '/assets/img/Gallary/IMG_5262.webp',
+        heroImage: '/assets/img/reserves/umred.webp',
         galleryImages: [
           '/assets/img/Hero/hero-1.webp',
           '/assets/img/Hero/hero-9.webp'
