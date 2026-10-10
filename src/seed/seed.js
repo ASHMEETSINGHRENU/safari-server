@@ -353,7 +353,7 @@ async function seedDatabase() {
         shortDesc: 'A compact 138 sq km gem bordering Wardha and Nagpur, boasting surprisingly dense feline populations and serene reservoir tracks.',
         editorialQuote: 'Bor proves that size is no barrier to profound wilderness and conservation triumph.',
         fullDesc: 'Recognized as India’s smallest tiger reserve, Bor acts as a vital stepping-stone corridor between Pench, Tadoba, and Melghat. The Bor reservoir provides magnificent scenery and reliable wildlife congregations year-round.',
-        heroImage: '/assets/img/Gallary/IMG_5261.webp',
+        heroImage: '/assets/img/reserves/bor-tiger.webp',
         galleryImages: ['/assets/img/Gallary/IMG_5232.webp', '/assets/img/Gallary/IMG_5249.webp'],
         areaSqKm: 138,
         tigerCount: '10+ Resident Tigers and Corridor Cats',
@@ -451,7 +451,7 @@ async function seedDatabase() {
         shortDesc: 'India’s most celebrated national park, offering vast open savannahs (maidans), towering sal trees, and the miraculous conservation story of the Hardground Barasingha.',
         editorialQuote: 'Kanha’s rolling grasslands are the closest an Indian forest comes to the timeless majesty of the Serengeti.',
         fullDesc: 'Covering 2,051 sq km across Mandla and Balaghat districts, Kanha is celebrated as the flagship of Project Tiger. It inspired Rudyard Kipling’s Jungle Book and is the only global habitat where the swamp deer (Barasingha) was brought back from the edge of extinction. Features world-famous zones: Kanha, Kisli, Mukki, and Sarhi.',
-        heroImage: '/assets/img/reserves/kanha-barasingha.jpg',
+        heroImage: '/assets/img/reserves/kanha.webp',
         galleryImages: [
           '/assets/img/Gallary/IMG_5250.webp',
           '/assets/img/Hero/hero-1.webp',
@@ -512,7 +512,7 @@ async function seedDatabase() {
         shortDesc: 'The northern heart of Kipling’s Mowgli territory in Seoni and Chhindwara, renowned for serene teak glades, open canopy visibility, and high predator density.',
         editorialQuote: 'Pench MP offers the quintessential dry deciduous safari experience with peerless light and gentle topography.',
         fullDesc: 'Covering 1,179 sq km along the MP-Maharashtra border, Pench MP is managed by the Madhya Pradesh Forest Department through its iconic Turia, Karmajhiri, and Jamtara zones. The crystal waters of the Pench river bisect the reserve, creating tranquil backwaters where tigers, wild dogs, and massive gaur herds gather.',
-        heroImage: '/assets/img/Gallary/IMG_5317.webp',
+        heroImage: '/assets/img/reserves/pench.webp',
         galleryImages: [
           '/assets/img/Gallary/IMG_5239.webp',
           '/assets/img/Gallary/IMG_5230.webp',
@@ -573,7 +573,7 @@ async function seedDatabase() {
         shortDesc: 'A unique wonderland of sandstone peaks, deep gorges, and the Denwa backwaters, offering rare walking safaris, canoeing, and intimate leopard tracking.',
         editorialQuote: 'Satpura is the quiet connoisseur’s forest—untamed, experiential, and profoundly atmospheric.',
         fullDesc: 'Encompassing 2,133 sq km in Hoshangabad district, Satpura is unlike any other Indian tiger reserve. It is one of the very few reserves in India that legally permits guided walking safaris inside core buffers. Accessed by boat across the Denwa river, it is famous for sloth bears, Indian leopards, and the Malabar giant squirrel.',
-        heroImage: '/assets/img/Hero/hero-1.webp',
+        heroImage: '/assets/img/reserves/satpura.webp',
         galleryImages: ['/assets/img/Gallary/IMG_5233.webp', '/assets/img/Hero/hero-5.webp'],
         areaSqKm: 2133,
         tigerCount: '52+ Resident Tigers',
@@ -685,7 +685,7 @@ async function seedDatabase() {
         shortDesc: 'India’s historic savannah sanctuary in Sheopur, chosen for the world’s first intercontinental translocation of cheetahs to restore Asian grasslands.',
         editorialQuote: 'At Kuno, the speed and elegance of the cheetah returns to the Indian landscape after seven decades of absence.',
         fullDesc: 'Covering 748 sq km of open grassland savannahs, Kardhai woodlands, and rocky ravines carved by the Kuno river, Kuno National Park stands at the center of world conservation history as the release site for Project Cheetah.',
-        heroImage: '/assets/img/reserves/kuno-cheetah.jpg',
+        heroImage: '/assets/img/reserves/kuno.webp',
         galleryImages: ['/assets/img/Hero/hero-9.webp', '/assets/img/Gallary/IMG_5233.webp'],
         areaSqKm: 748,
         tigerCount: 'Cheetah Sanctuary + Resident Leopards',
@@ -1139,7 +1139,7 @@ for (const s of safarisData) {
     await SiteSettings.create({
       siteName: 'SHUTTER AND STRIPES',
       tagline: 'Guided by Locals • Inspired by Nature',
-      contactEmail: 'concierge@shutterandstripes.com',
+      contactEmail: 'enquiries@shutterandstripessafaris.com',
       contactPhone: '+91 90219 18758',
       officeAddress: '392, At Moharli, Near Moharli Gate Core, Tadoba Road, Tadoba, Chandrapur, Maharashtra – 442404, India',
       emergencySupport: '+91 98230 45678'
