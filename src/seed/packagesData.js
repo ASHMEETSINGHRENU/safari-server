@@ -1,11 +1,16 @@
-// Extracted from Shutter_and_Stripes_Website_Content_Master.md sections 10 and 11.
-// 17 destinations, 51 tiers. This is the deployed price authority: quoteFor() in
-// src/utils/pricing.js reads it via the destination's packages[].
+// Extracted from Shutter_and_Stripes_Website_Content_Master.md sections 10 and 11,
+// re-priced from "Tour package details_updated (1).docx". 17 destinations, 3 tiers each.
+// This is the deployed price authority: quoteFor() in src/utils/pricing.js reads it via
+// the destination's packages[].
 //
 // Whole packages only. Park permit, vehicle, naturalist guide, meals, transfers and
 // forest dues are all inside the tier price and are never itemised alongside it.
 // min is the quote basis (what the server charges); max is the advertised ceiling and
 // openEnded marks tiers quoted as "up to" (rendered with a trailing +).
+//
+// A tier priced 0 is NOT offered for that reserve. packagesOf() (client) and quoteFor()
+// (server) drop min <= 0 tiers, so a reserve showing "Budget: 0" simply renders without
+// a Budget option and, when only Mid-Range is priced, quotes Mid-Range.
 //
 // When the master doc changes, re-extract these tiers. The markdown tables are
 // irregular (one table divider leaked in as an includes entry), so check that no
@@ -17,12 +22,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 14500,
+    "startingPrice": 33500,
     "packages": [
       {
         "label": "Budget",
-        "min": 14500,
-        "max": 17500,
+        "min": 33500,
+        "max": 33500,
         "openEnded": false,
         "includes": [
           "Standard AC rooming at TADOBA SAFARI STAY NATURE'S SPROUT",
@@ -32,8 +37,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 21000,
-        "max": 26500,
+        "min": 36000,
+        "max": 36000,
         "openEnded": false,
         "includes": [
           "Premium independent forest cottage layouts at Tathastu Tadoba",
@@ -44,9 +49,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 40000,
-        "max": 65000,
-        "openEnded": true,
+        "min": 48000,
+        "max": 48000,
+        "openEnded": false,
         "includes": [
           "Ultra-premium signature villas at WelcomHeritage Tadoba Vanya Villas Resort & Spa",
           "Tailored bush fine-dining menus",
@@ -62,12 +67,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 13500,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 13500,
-        "max": 16500,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Basic eco-resort stays near Sillari",
@@ -77,8 +82,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 20000,
-        "max": 27000,
+        "min": 35000,
+        "max": 35000,
         "openEnded": false,
         "includes": [
           "Deluxe cottages at Olive Resorts Pench",
@@ -89,9 +94,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 38000,
-        "max": 55000,
-        "openEnded": true,
+        "min": 47000,
+        "max": 47000,
+        "openEnded": false,
         "includes": [
           "Boutique private glamping villas near the boundary",
           "Bespoke estate dining",
@@ -107,12 +112,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 12000,
+    "startingPrice": 29500,
     "packages": [
       {
         "label": "Budget",
-        "min": 12000,
-        "max": 15000,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Authentic eco-lodge cabins at Semadoh Forest Rest House",
@@ -122,8 +127,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 18500,
-        "max": 23000,
+        "min": 29500,
+        "max": 29500,
         "openEnded": false,
         "includes": [
           "Deluxe rooms at Green Valley Resort Chikhaldara",
@@ -134,9 +139,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 32000,
-        "max": 45000,
-        "openEnded": true,
+        "min": 0,
+        "max": 0,
+        "openEnded": false,
         "includes": [
           "Elite view-villas at premium highland properties",
           "Customized private field menus",
@@ -152,12 +157,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 13000,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 13000,
-        "max": 16000,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Clean rooms at Mahaforest Eco-Resorts",
@@ -167,8 +172,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 19500,
-        "max": 25000,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Deluxe cabins at Nagzira Nature Camp",
@@ -179,9 +184,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 35000,
-        "max": 50000,
-        "openEnded": true,
+        "min": 42500,
+        "max": 42500,
+        "openEnded": false,
         "includes": [
           "Premium boutique canvas tents",
           "Tailored bush-lit dinners",
@@ -197,12 +202,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 8500,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 8500,
-        "max": 11000,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Standard rooming layouts at MTDC Bor",
@@ -212,8 +217,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 13000,
-        "max": 17500,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Modern AC cottage rooms at Bor Wildlife Resort",
@@ -223,9 +228,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 24000,
-        "max": 35000,
-        "openEnded": true,
+        "min": 0,
+        "max": 0,
+        "openEnded": false,
         "includes": [
           "Premium lakeside eco-suites",
           "Gourmet terrace dining setups",
@@ -241,12 +246,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 14000,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 14000,
-        "max": 17000,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Standard nature lodges near Sunna",
@@ -256,8 +261,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 21000,
-        "max": 27500,
+        "min": 35000,
+        "max": 35000,
         "openEnded": false,
         "includes": [
           "Deluxe rooms at Tipeshwar Tiger Resort",
@@ -268,9 +273,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 38000,
-        "max": 55000,
-        "openEnded": true,
+        "min": 48000,
+        "max": 48000,
+        "openEnded": false,
         "includes": [
           "Boutique high-end luxury wilderness camps",
           "Bespoke menu spreads",
@@ -286,12 +291,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 9000,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 9000,
-        "max": 12000,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Traditional rural eco-homestays",
@@ -301,8 +306,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 14500,
-        "max": 19000,
+        "min": 38500,
+        "max": 38500,
         "openEnded": false,
         "includes": [
           "Premium AC cottages at local wildlife resorts",
@@ -312,9 +317,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 25000,
-        "max": 38000,
-        "openEnded": true,
+        "min": 47000,
+        "max": 47000,
+        "openEnded": false,
         "includes": [
           "Boutique concept countryside hideaways",
           "Fine-dining inclusions",
@@ -330,12 +335,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 13500,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 13500,
-        "max": 16500,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Basic eco-tented rest houses or village homestays near Pawani",
@@ -345,8 +350,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 19500,
-        "max": 26000,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Comfort cottages at organic farm-stay properties such as Anandvan Agrotourism",
@@ -357,9 +362,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 36000,
-        "max": 52000,
-        "openEnded": true,
+        "min": 0,
+        "max": 0,
+        "openEnded": false,
         "includes": [
           "Premium safari villas bordering the Pench-Mogarkasa corridor",
           "Bespoke outdoor dynamic dining spreads",
@@ -375,12 +380,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 18000,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 18000,
-        "max": 22500,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Cozy accommodation near Khatia at Kanha Resort",
@@ -390,7 +395,7 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 28000,
+        "min": 36000,
         "max": 36000,
         "openEnded": false,
         "includes": [
@@ -402,9 +407,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 65000,
-        "max": 120000,
-        "openEnded": true,
+        "min": 48500,
+        "max": 48500,
+        "openEnded": false,
         "includes": [
           "Opulent river-view tented platforms at Banjaar Tola, A Taj Safari, Kanha National Park",
           "Signature Taj fine-dining hospitality",
@@ -420,12 +425,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 16000,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 16000,
-        "max": 19500,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Clean courtyard safari units near Tala",
@@ -435,8 +440,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 24000,
-        "max": 32000,
+        "min": 35000,
+        "max": 35000,
         "openEnded": false,
         "includes": [
           "Premium forest huts at Kings Lodge Bandhavgarh",
@@ -447,9 +452,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 50000,
-        "max": 85000,
-        "openEnded": true,
+        "min": 48500,
+        "max": 48500,
+        "openEnded": false,
         "includes": [
           "Royal-style heritage villas at Mahua Kothi, A Taj Safari",
           "Private star-lit bush dinners",
@@ -465,12 +470,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 15000,
+    "startingPrice": 32000,
     "packages": [
       {
         "label": "Budget",
-        "min": 15000,
-        "max": 18500,
+        "min": 32000,
+        "max": 32000,
         "openEnded": false,
         "includes": [
           "Comfort safari rooms at The Pench International",
@@ -481,8 +486,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 22000,
-        "max": 29500,
+        "min": 36000,
+        "max": 36000,
         "openEnded": false,
         "includes": [
           "Chic contemporary forest cabins at Sterling Padam Pench",
@@ -493,9 +498,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 38000,
-        "max": 60000,
-        "openEnded": true,
+        "min": 48000,
+        "max": 48000,
+        "openEnded": false,
         "includes": [
           "Opulent river suites or machans at Baghvan, A Taj Safari",
           "All-inclusive private-property fine dining",
@@ -556,12 +561,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 14000,
+    "startingPrice": 34000,
     "packages": [
       {
         "label": "Budget",
-        "min": 14000,
-        "max": 17500,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Comfortable local heritage homestays near Madla",
@@ -571,8 +576,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 22000,
-        "max": 30000,
+        "min": 34000,
+        "max": 34000,
         "openEnded": false,
         "includes": [
           "River-facing independent cottage rooms at Ken River Lodge",
@@ -584,8 +589,8 @@ export const PACKAGES_BY_SLUG = {
       {
         "label": "Luxury",
         "min": 45000,
-        "max": 70000,
-        "openEnded": true,
+        "max": 45000,
+        "openEnded": false,
         "includes": [
           "Stone-sculpted river villas at Pashan Garh, A Taj Safari",
           "Private stream-side fine-dining alignments",
@@ -601,12 +606,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 13500,
+    "startingPrice": 35000,
     "packages": [
       {
         "label": "Budget",
-        "min": 13500,
-        "max": 16500,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Clean forest rest-houses near Dubri",
@@ -616,8 +621,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 20000,
-        "max": 27000,
+        "min": 35000,
+        "max": 35000,
         "openEnded": false,
         "includes": [
           "Riverside cottage tracks at Parsili Resort, MP Tourism",
@@ -628,9 +633,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 35000,
-        "max": 50000,
-        "openEnded": true,
+        "min": 0,
+        "max": 0,
+        "openEnded": false,
         "includes": [
           "Boutique deep-forest glamping suites",
           "Curated private estate dining",
@@ -646,12 +651,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 12500,
+    "startingPrice": 37500,
     "packages": [
       {
         "label": "Budget",
-        "min": 12500,
-        "max": 15500,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Clean transit eco-lodges near Bhimbetka",
@@ -661,8 +666,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 18000,
-        "max": 24000,
+        "min": 37500,
+        "max": 37500,
         "openEnded": false,
         "includes": [
           "Premium cottage rooms at MP Tourism Highway Retreat near Kolar Dam",
@@ -672,9 +677,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 32000,
-        "max": 48000,
-        "openEnded": true,
+        "min": 0,
+        "max": 0,
+        "openEnded": false,
         "includes": [
           "Boutique premium rural-luxe forest villas",
           "All-inclusive personalized estate meals",
@@ -690,12 +695,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 15000,
+    "startingPrice": 35000,
     "packages": [
       {
         "label": "Budget",
-        "min": 15000,
-        "max": 18500,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Clean nature-adjacent rooms near Tiktoli",
@@ -705,8 +710,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 24000,
-        "max": 32500,
+        "min": 35000,
+        "max": 35000,
         "openEnded": false,
         "includes": [
           "Premium AC cottages at Kuno Wildlife Resort or MP Tourism jungle huts",
@@ -716,9 +721,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 42000,
-        "max": 65000,
-        "openEnded": true,
+        "min": 42500,
+        "max": 42500,
+        "openEnded": false,
         "includes": [
           "Ultra-luxury custom safari glamping tents",
           "Personalized private bush fine-dining blocks",
@@ -734,12 +739,12 @@ export const PACKAGES_BY_SLUG = {
     "gateway": null,
     "duration": null,
     "safari": null,
-    "startingPrice": 11000,
+    "startingPrice": 42000,
     "packages": [
       {
         "label": "Budget",
-        "min": 11000,
-        "max": 14500,
+        "min": 0,
+        "max": 0,
         "openEnded": false,
         "includes": [
           "Standard non-AC or standard AC rooming at the official Forest Department Rest House",
@@ -749,8 +754,8 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Mid-Range",
-        "min": 16500,
-        "max": 22000,
+        "min": 42000,
+        "max": 42000,
         "openEnded": false,
         "includes": [
           "Eco-cottage accommodations at the official Kheoni Eco Jungle Camp operated by the MP Ecotourism Board",
@@ -761,9 +766,9 @@ export const PACKAGES_BY_SLUG = {
       },
       {
         "label": "Luxury",
-        "min": 28000,
-        "max": 42000,
-        "openEnded": true,
+        "min": 0,
+        "max": 0,
+        "openEnded": false,
         "includes": [
           "Premium wooden chalets within designated eco-zones",
           "Curated open-air jungle dinners",

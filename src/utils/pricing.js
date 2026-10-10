@@ -15,7 +15,8 @@ export async function quoteFor({ destination, packageLabel, adults, children, na
     throw Object.assign(new Error('Destination is required to price a booking.'), { status: 400 });
   }
 
-  const tiers = destination.packages ?? [];
+  // A tier priced 0 is not offered for this reserve — never quote it.
+  const tiers = (destination.packages ?? []).filter((t) => t.min > 0);
   if (tiers.length === 0) {
     throw Object.assign(
       new Error('This destination has no published package pricing yet. Our team will confirm the quote.'),

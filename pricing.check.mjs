@@ -28,8 +28,12 @@ console.log('[pricing] package dataset');
       ['Budget', 'Mid-Range', 'Luxury'],
       `${slug} tier labels`
     );
+    assert.ok(
+      entry.packages.some(t => t.min > 0),
+      `${slug} has at least one priced (non-zero) tier`
+    );
     for (const t of entry.packages) {
-      assert.ok(t.min > 0, `${slug} ${t.label} min > 0`);
+      assert.ok(t.min >= 0, `${slug} ${t.label} min not negative (0 = not offered)`);
       assert.ok(t.max >= t.min, `${slug} ${t.label} max >= min`);
       assert.ok(Array.isArray(t.includes) && t.includes.length > 0, `${slug} ${t.label} has inclusions`);
       for (const item of t.includes) {
@@ -99,6 +103,32 @@ console.log('[pricing] quoteFor');
   assert.equal(r.adults, 3);
   assert.equal(r.total, budget.min * 3 + Math.round(budget.min * 0.5));
   ok('string guests from JSON are coerced to numbers');
+}
+
+console.log('[pricing] zero-priced tiers');
+{
+  const melghat = { slug: 'melghat', packages: PACKAGES_BY_SLUG.melghat.packages };
+  const r = await quoteFor({ destination: melghat, adults: 1, children: 0 });
+  assert.equal(r.tier, 'Mid-Range');
+  assert.equal(r.perPerson, 29500);
+  ok('a reserve with no priced Budget drops to its priced Mid-Range tier');
+}
+
+{
+  const allZero = {
+    slug: 'x',
+    packages: [
+      { label: 'Budget', min: 0, max: 0, openEnded: false, includes: ['room'] },
+      { label: 'Mid-Range', min: 0, max: 0, openEnded: false, includes: ['room'] }
+    ]
+  };
+  await quoteFor({ destination: allZero, adults: 1 }).then(
+    () => { throw new Error('expected a rejection when no tier is priced'); },
+    (err) => {
+      assert.equal(err.status, 409);
+      ok('a destination whose every tier is zero is treated as on request (409)');
+    }
+  );
 }
 
 console.log('[pricing] rejections');
