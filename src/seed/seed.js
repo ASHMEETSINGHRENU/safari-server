@@ -1001,28 +1001,6 @@ for (const s of safarisData) {
     // 6. Seed Journal Articles
     const journalData = [
       {
-        title: 'The Art of the Safari: Ethical Wildlife Photography in India',
-        slug: 'ethical-wildlife-photography-guide',
-        category: 'Photography',
-        excerpt: 'Why patience, vehicle positioning, and absolute respect for animal distance trump aggressive lens pursuit every single time.',
-        content: `### Beyond the Trophy Shot\n\nTrue wildlife photography begins long before you press the shutter. In the dry deciduous canopies of central India, animal ethics and respectful distance are paramount.\n\n#### The Golden Rules of Indian Jungle Photography:\n1. **Zero Animal Disturbance**: Never ask your driver to maneuver aggressively or cut off an animal's path.\n2. **Silence Over Speed**: Wildlife senses sound and vibrations. A vehicle that cuts its engine and waits quietly will always yield richer behavioral moments.\n3. **Natural Light Mastery**: Morning light in sal forests creates soft, diffused rims. Use high shutter speeds without relying on artificial lighting or flashes.\n\n*"A great photograph celebrates the animal’s kingdom, never its inconvenience."*`,
-        coverImage: '/assets/img/Hero/hero-8.webp',
-        author: 'Resident Naturalist',
-        readTime: '6 min read',
-        destinationTag: 'Bandhavgarh'
-      },
-      {
-        title: 'Tadoba Unveiled: The Dynasty of the Bamboo Thickets',
-        slug: 'tadoba-dynasty-bamboo-thickets',
-        category: 'Destinations',
-        excerpt: 'Understanding the terrain, waterholes, and seasonal movements of Maharashtra’s greatest tiger sanctuary.',
-        content: `### Why Tadoba Captivates the World\n\nTadoba-Andhari in Chandrapur is legendary for a reason. Unlike many northern reserves that close during the monsoon, Tadoba’s buffer zones stay active all year.\n\nFrom the ancient Telia Dam to the rolling grasslands of Moharli, tigers here have coexisted alongside experienced tribal guides for decades, creating observational encounters that redefine human connection with nature.`,
-        coverImage: '/assets/img/Gallary/IMG_5237.webp',
-        author: 'Vidarbha Field Research Team',
-        readTime: '8 min read',
-        destinationTag: 'Tadoba-Andhari'
-      },
-      {
         title: 'Comparing the Twin Sisters: Pench MP vs. Pench Maharashtra',
         slug: 'comparing-pench-mp-vs-pench-maharashtra',
         category: 'Safari Guide',
@@ -1162,8 +1140,8 @@ for (const s of safarisData) {
       siteName: 'SHUTTER AND STRIPES',
       tagline: 'Guided by Locals • Inspired by Nature',
       contactEmail: 'concierge@shutterandstripes.com',
-      contactPhone: '+91 (0) 712 258 4930',
-      officeAddress: 'Civil Lines, Nagpur, Maharashtra 440001 (Base for Central Indian Tiger Reserves)',
+      contactPhone: '+91 90219 18758',
+      officeAddress: '392, At Moharli, Near Moharli Gate Core, Tadoba Road, Tadoba, Chandrapur, Maharashtra – 442404, India',
       emergencySupport: '+91 98230 45678'
     });
 
