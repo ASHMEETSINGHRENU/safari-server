@@ -1,7 +1,7 @@
 // Self-check for the package pricing authority (src/utils/pricing.js).
 // No test framework: plain asserts, run with `npm run check:pricing`.
 import assert from 'node:assert/strict';
-import { quoteFor } from './src/utils/pricing.js';
+import { quoteFor, tripDuration, endDateFor } from './src/utils/pricing.js';
 import { PACKAGES_BY_SLUG } from './src/seed/packagesData.js';
 
 let checks = 0;
@@ -47,6 +47,35 @@ console.log('[pricing] package dataset');
   }
   assert.equal(tiers, 51, 'expected 51 tiers from the Content Master');
   ok(`all ${tiers} tiers have ordered ranges and real inclusions`);
+
+  for (const [slug, entry] of Object.entries(PACKAGES_BY_SLUG)) {
+    assert.ok(
+      /\d+\s*Days?\s*\/\s*\d+\s*Nights?/i.test(entry.duration ?? ''),
+      `${slug} has a standard duration string`
+    );
+  }
+  ok(`all ${slugs.length} destinations carry a standard duration`);
+}
+
+console.log('[pricing] tripDuration / endDateFor');
+{
+  assert.deepEqual(tripDuration('3 Days / 2 Nights'), { days: 3, nights: 2 });
+  assert.deepEqual(
+    tripDuration('3 Days / 2 Nights (Includes 3 Open Gypsy Safaris)'),
+    { days: 3, nights: 2 },
+    'trailing add-on copy is ignored'
+  );
+  assert.deepEqual(tripDuration(undefined), { days: 3, nights: 2 }, 'missing duration falls back to 3/2');
+  assert.deepEqual(tripDuration('on request'), { days: 3, nights: 2 }, 'unparseable falls back to 3/2');
+  ok('parses days/nights and falls back to the house standard');
+
+  assert.equal(endDateFor('2026-11-12', '3 Days / 2 Nights'), '2026-11-14', '3D/2N spans three days inclusive');
+  assert.equal(endDateFor('2026-11-12', '2 Days / 1 Night'), '2026-11-13', '2D/1N ends the next day');
+  assert.equal(endDateFor('2026-06-28', '4 Days / 3 Nights'), '2026-07-01', 'spans across a month boundary');
+  assert.equal(endDateFor('', '3 Days / 2 Nights'), null, 'unparseable start date yields null');
+  ok('endDateFor returns the inclusive last day (month-boundary safe)');
+  assert.equal(endDateFor('2026-02-27', '3 Days / 2 Nights'), '2026-03-01', 'handles short months');
+  ok('endDateFor is calendar-correct across a 28-day February');
 }
 
 console.log('[pricing] quoteFor');
@@ -82,20 +111,6 @@ console.log('[pricing] quoteFor');
   assert.equal(r.adults, 1, 'adults coerced to at least 1');
   assert.equal(r.total, budget.min);
   ok('zero guests cannot produce a free booking');
-}
-
-{
-  const r = await quote({ packageLabel: 'Mid-Range', adults: 2, children: 0, naturalistRequested: true });
-  assert.equal(r.naturalistFee, 1000);
-  assert.equal(r.total, midRange.min * 2 + 1000);
-  ok('senior naturalist adds a flat fee once per booking');
-}
-
-{
-  const r = await quote({ packageLabel: 'Mid-Range', adults: 2, children: 0, naturalistRequested: false });
-  assert.equal(r.naturalistFee, 0);
-  assert.equal(r.total, midRange.min * 2);
-  ok('declining the naturalist leaves the package total untouched');
 }
 
 {

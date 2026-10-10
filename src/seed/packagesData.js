@@ -20,7 +20,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Sighting Capital",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 33500,
     "packages": [
@@ -65,7 +65,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Sillari Hub",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -110,7 +110,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Satpura Highland Fortress",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 29500,
     "packages": [
@@ -155,7 +155,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Central Bamboo Forest",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -200,7 +200,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Micro-Reserve Pioneer",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "2 Days / 1 Night",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -244,7 +244,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Breeding Haven",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -289,7 +289,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Migratory Corridor",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "2 Days / 1 Night",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -333,7 +333,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Black Panther Frontier",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -378,7 +378,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Meadow Heritage",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "4 Days / 3 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -423,7 +423,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Royal Tiger Fortress",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -468,7 +468,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Original Kipling Woods",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 32000,
     "packages": [
@@ -514,7 +514,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Multimodal Ecosphere",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 15500,
     "packages": [
@@ -559,7 +559,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Diamond & River Gorges",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 34000,
     "packages": [
@@ -604,7 +604,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Deep Sal Wilderness",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 35000,
     "packages": [
@@ -649,7 +649,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Ancient Heritage Frontier",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 37500,
     "packages": [
@@ -693,7 +693,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Global Cheetah Sanctuary",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 35000,
     "packages": [
@@ -737,7 +737,7 @@ export const PACKAGES_BY_SLUG = {
     "positioning": "The Uncharted Wild Heart",
     "bestSuitedFor": null,
     "gateway": null,
-    "duration": null,
+    "duration": "3 Days / 2 Nights",
     "safari": null,
     "startingPrice": 42000,
     "packages": [

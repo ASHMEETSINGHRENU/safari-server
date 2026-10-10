@@ -1,6 +1,6 @@
 ﻿import { randomInt } from 'node:crypto';
 import { Booking } from '../models/Booking.js';
-import { quoteFor, findDestinationForBooking } from '../utils/pricing.js';
+import { quoteFor, findDestinationForBooking, endDateFor } from '../utils/pricing.js';
 import { ownsBooking, isStaff } from '../utils/ownership.js';
 import { regexEscape } from '../utils/search.js';
 import { notifyBookingReceived, notifyBookingStatus } from '../utils/notify.js';
@@ -40,8 +40,6 @@ export const createBooking = async (req, res, next) => {
       packageLabel: req.body.packageLabel,
       adults: req.body.guests?.adults,
       children: req.body.guests?.children,
-      // Model default is "naturalist requested"; an explicit false is the only opt-out.
-      naturalistRequested: req.body.naturalistRequested !== false,
     });
 
     const bookingData = {
@@ -53,6 +51,8 @@ export const createBooking = async (req, res, next) => {
       paymentStatus: 'pending',
       totalAmount: quote.total,
       packageLabel: quote.tier,
+      // Authoritative trip span from the reserve's duration, never the client's copy.
+      endDate: endDateFor(req.body.safariDate, dest?.packageDuration),
     };
 
     let booking;

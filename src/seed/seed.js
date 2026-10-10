@@ -862,7 +862,6 @@ for (const s of safarisData) {
       zone: 'Moharli Core Zone',
       vehicleType: 'Open 4x4 Safari Jeep',
       guests: { adults: 2, children: 0 },
-      naturalistRequested: true,
       specialRequests: 'Interested in tiger photography; please allocate experienced naturalist driver.',
       totalAmount: 10000,
       bookingStatus: 'confirmed',

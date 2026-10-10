@@ -16,6 +16,8 @@ const BookingSchema = new mongoose.Schema({
   safari: { type: mongoose.Schema.Types.ObjectId, ref: 'Safari' },
 safariName: { type: String, required: true },
   safariDate: { type: String, required: true },
+  // Computed server-side from the reserve's standard package duration (trip span, not pricing).
+  endDate: { type: String },
   // Slot selection was removed from the wizard; the rep assigns it during review.
   slot: { type: String, default: 'To be confirmed' },
   zone: { type: String, required: true },
@@ -34,7 +36,6 @@ safariName: { type: String, required: true },
     ],
     default: []
   },
-  naturalistRequested: { type: Boolean, default: true },
   specialRequests: { type: String },
   totalAmount: { type: Number, required: true },
   packageLabel: { type: String, enum: ['Budget', 'Mid-Range', 'Luxury'] },
