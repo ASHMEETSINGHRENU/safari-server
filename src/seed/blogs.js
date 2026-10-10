@@ -43,7 +43,7 @@ Whether you are visiting Tadoba for the first time or planning a wildlife photog
 ## Explore with purpose
 
 The vision is simple: help more people connect with the wild while supporting the communities that live alongside it. Shutter and Stripes invites travellers to discover forests with patience, learn from local naturalists and leave with more than photographs—a lasting understanding of why these places matter.`,
-    coverImage: '/assets/img/Gallary/IMG_5234.webp',
+    coverImage: '/assets/img/journal/safari-waterhole-adventure.webp',
     author: 'Sachin Neware — Founder and Principal Naturalist',
     readTime: '5 min read',
     destinationTag: 'Tadoba-Andhari'
@@ -183,7 +183,7 @@ Patience is not simply a way to improve a photograph; it is part of respecting t
 Different travellers notice different things. Families may enjoy learning to recognise tracks and calls; photographers may pay close attention to light, background and behaviour; first-time visitors may be captivated by the forest's sounds and scale.
 
 Shutter and Stripes creates tailored journeys around a traveller's interests and pace, with local naturalists and drivers helping guests understand the landscape. The best approach to Tadoba is to arrive curious, remain patient and let the forest set the rhythm.`,
-    coverImage: '/assets/img/Gallary/IMG_5237.webp',
+    coverImage: '/assets/img/Gallary/Paw-print.webp',
     readTime: '4 min read',
     destinationTag: 'Tadoba-Andhari'
   },
