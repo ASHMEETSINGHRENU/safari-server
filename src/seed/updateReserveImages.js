@@ -15,7 +15,7 @@ const IMAGE_UPDATES = {
   'ratapani': '/assets/img/Gallary/IMG_5301.webp',
   'satpura': '/assets/img/reserves/satpura.webp',
   // sanjay-dubri: no change
-  'tadoba-andhari': '/assets/img/Gallary/IMG_5250.webp',
+  'tadoba-andhari': '/assets/img/Hero/hero-1.webp',
   'tipeshwar': '/assets/img/reserves/tipeshwar.webp',
   'umred-karhandla': '/assets/img/reserves/umred.webp',
 };

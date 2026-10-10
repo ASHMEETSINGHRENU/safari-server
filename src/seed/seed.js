@@ -96,7 +96,7 @@ async function seedDatabase() {
         shortDesc: 'Maharashtra’s oldest and premier tiger reserve, celebrated for fearless tiger dynasties, dense bamboo labyrinths, and legendary waterhole sightings.',
         editorialQuote: 'Tadoba is the colosseum of central Indian wildlife where legends like Maya, Matkasur, and Sonam carved their names into natural history.',
         fullDesc: 'Situated in the Chandrapur district of Maharashtra, Tadoba-Andhari Tiger Reserve spans 1,727 sq km of pristine dry deciduous forest, teak ridges, and bamboo thickets. Anchored by the perennial Tadoba Lake, Telia Dam, and Erai Reservoir, the reserve offers unmatched year-round tiger encounters through its historic core and thriving community-led buffer zones.',
-        heroImage: '/assets/img/Gallary/IMG_5250.webp',
+        heroImage: '/assets/img/Hero/hero-1.webp',
         galleryImages: [
           '/assets/img/Gallary/IMG_5250.webp',
           '/assets/img/Hero/hero-1.webp',
