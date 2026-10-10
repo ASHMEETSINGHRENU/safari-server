@@ -35,10 +35,20 @@ if (search) {
   }
 };
 
+// Admin view: every reserve, published or hidden, so the toggle can be flipped back.
+export const getDestinationsAdmin = async (req, res, next) => {
+  try {
+    const destinations = await Destination.find().sort({ state: 1, name: 1 });
+    res.json({ success: true, count: destinations.length, destinations });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getDestinationBySlug = async (req, res, next) => {
   try {
-    const { slug } = req.params;
-    const destination = await Destination.findOne({ slug: slug.toLowerCase() });
+const { slug } = req.params;
+    const destination = await Destination.findOne({ slug: slug.toLowerCase(), isPublished: true });
     if (!destination) {
       return res.status(404).json({ success: false, message: 'Destination reserve not found.' });
     }
