@@ -14,6 +14,7 @@ const JournalSchema = new mongoose.Schema({
   metaDescription: { type: String },
   keywords: { type: [String], default: [] },
   coverImage: { type: String, required: true },
+  coverImageCredit: { type: String },
   author: { type: String, default: 'Resident Naturalist' },
   readTime: { type: String, default: '5 min read' },
   destinationTag: { type: String },

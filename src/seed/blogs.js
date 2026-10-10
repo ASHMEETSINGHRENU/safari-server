@@ -137,7 +137,8 @@ Respect also means being curious about the wider place: its communities, livelih
 Responsible wildlife tourism is not a single action. It is a way of approaching a journey—with care for wildlife, respect for local expertise and awareness of the impact tourism can have.
 
 By centring local naturalists and community-minded travel, Shutter and Stripes invites guests to experience the wild while thinking about the people and relationships that help sustain it.`,
-    coverImage: '/assets/img/Gallary/IMG_5238.webp',
+    coverImage: '/assets/img/journal/moharli-gate.webp',
+    coverImageCredit: 'Photo: "Tadoba wildlife park" by Vanshika123, via Wikimedia Commons, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Changes: None.',
     readTime: '4 min read'
   },
   {
